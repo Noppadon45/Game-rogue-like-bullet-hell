@@ -6,15 +6,27 @@ using static UnityEditor.FilePathAttribute;
 //Script Projectile Behaviour [Place on prefab weapons projectiles]
 public class ProjectileWeaponBehaviour : MonoBehaviour
 {
+    public WeaponScriptableObject WeaponData;
     protected Vector3 direction;
     public float DestroyAfterSecound;
-    // Start is called before the first frame update
+
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuraton;
+    protected float currentPierce;
+
+    void Awake()
+    {
+        currentDamage = WeaponData.damage;
+        currentSpeed = WeaponData.speed;
+        currentCooldownDuraton = WeaponData.coolDownDuration;
+        currentPierce = WeaponData.Pierce;
+    }
+
     protected virtual void Start()
     {
         Destroy(gameObject, DestroyAfterSecound);
     }
-
-    // Update is called once per frame
     public void DirectionChecker(Vector3 Dir)
     {
         direction = Dir;
@@ -71,5 +83,24 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
 
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            EnemyStats enemy = col.GetComponent<EnemyStats>();
+            enemy.TakeDamage(currentDamage);        //check WeaponData.damage 
+            ReducePierce();
+        }
+    }
+
+    void ReducePierce() //Destroy when the pierce hit 0
+    {
+        currentPierce--;
+        if (currentPierce <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

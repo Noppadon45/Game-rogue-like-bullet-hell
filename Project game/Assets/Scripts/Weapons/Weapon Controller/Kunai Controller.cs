@@ -14,7 +14,7 @@ public class KunaiController : WeaponsController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedKunai = Instantiate(prefab);
+        GameObject spawnedKunai = Instantiate(WeaponData.Prefab);
         spawnedKunai.transform.position = transform.position;
         spawnedKunai.GetComponent<KunaiBehaviour>().DirectionChecker(pm.LastMovementVector);
     }

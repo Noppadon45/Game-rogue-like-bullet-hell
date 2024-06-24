@@ -7,19 +7,16 @@ using UnityEngine;
 public class WeaponsController : MonoBehaviour
 {
     [Header("Weapons Stats")]
-    public GameObject prefab;
-    public float Damage;
-    public float Speed;
-    public float CoolDownDuration;
+    public WeaponScriptableObject WeaponData;
     float CurrentCoolDown;
-    public float pierce;
+
 
     protected PlayerMovement pm;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         pm = FindObjectOfType<PlayerMovement>();
-        CurrentCoolDown = CoolDownDuration;     //set CD current durations
+        CurrentCoolDown = WeaponData.coolDownDuration;     //set CD current durations
     }
 
     // Update is called once per frame
@@ -34,6 +31,6 @@ public class WeaponsController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        CurrentCoolDown = CoolDownDuration;
+        CurrentCoolDown = WeaponData.coolDownDuration;
     }
 }
