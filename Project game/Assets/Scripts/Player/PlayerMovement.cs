@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float MovementSpeed;
-    Rigidbody2D rb;
     [HideInInspector]
     public float lastHorizontalvector;
     [HideInInspector]
@@ -14,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 moveDirection;
     public Vector2 LastMovementVector;
+
+    Rigidbody2D rb;
+    public CharacterSciptableObject characterData;
 
 
     // Start is called before the first frame update
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void move()
     {
-        rb.velocity = new Vector2(moveDirection.x * MovementSpeed , moveDirection.y * MovementSpeed);
+        rb.velocity = new Vector2(moveDirection.x * characterData.MoveSpeed, moveDirection.y * characterData.MoveSpeed);
     }
 
 }

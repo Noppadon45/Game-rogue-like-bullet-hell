@@ -20,6 +20,14 @@ public class AuraBehaviour : MeleeWeaponBehaviour
 
             markedEnemies.Add(col.gameObject);      //Market Cant take damage twice in roll
         }
+        else if (col.CompareTag("Prop"))
+        {
+            if (col.gameObject.TryGetComponent(out BreakbleProp breakble) && !markedEnemies.Contains(col.gameObject))
+            {
+                breakble.TakeDamage(currentDamage);
+                markedEnemies.Add(col.gameObject);
+            }
+        }
     }
 
 }

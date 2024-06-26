@@ -32,4 +32,15 @@ public class EnemyStats : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
+    // Reference from PlayerStats takeDamage()
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+            player.takeDamage(CurrentDamage);       //use EnemyData
+        }
+    }
 }

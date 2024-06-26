@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3784800034748225811}
   - component: {fileID: 7152350008099615565}
   - component: {fileID: 7350835748502787681}
+  - component: {fileID: 338168352820049171}
+  - component: {fileID: 2012254370357324219}
   m_Layer: 0
   m_Name: Terrain_4
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,3 +132,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &338168352820049171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066672345943472791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c3347e776098642afb586589653a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &2012254370357324219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066672345943472791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e50361ad9637c141a4e7c3b3ffe1a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - Name: Medipack
+    ItemPrefab: {fileID: 8045654967164620040, guid: 28bac21795149d040b7d3e4be59f7574, type: 3}
+    Droprate: 40

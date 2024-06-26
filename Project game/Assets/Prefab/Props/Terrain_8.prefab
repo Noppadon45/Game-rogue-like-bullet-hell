@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1977541617242626325}
   - component: {fileID: 60680182168483954}
+  - component: {fileID: 6674315559496619480}
   m_Layer: 0
   m_Name: Terrain_8
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6674315559496619480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345297928398049871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c3347e776098642afb586589653a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
