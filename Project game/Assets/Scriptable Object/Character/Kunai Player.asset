@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Kunai Player
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 100
   recovery: 0
-  maxSpeed: 0
+  moveSpeed: 5
   might: 0
   projectileSpeed: 0

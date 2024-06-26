@@ -15,12 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 LastMovementVector;
 
     Rigidbody2D rb;
-    public CharacterSciptableObject characterData;
+    PlayerStats playerStats;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
         LastMovementVector = new Vector2(1, 0f);        //Default Startgame movement
     }
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void move()
     {
-        rb.velocity = new Vector2(moveDirection.x * characterData.MoveSpeed, moveDirection.y * characterData.MoveSpeed);
+        rb.velocity = new Vector2(moveDirection.x * playerStats.currentMoveSpeed, moveDirection.y * playerStats.currentMoveSpeed);
     }
 
 }

@@ -6,11 +6,16 @@ public class PlayerStats : MonoBehaviour
 {
     public CharacterSciptableObject CharacterData;
     //Current Stats Player
-    float currentHealth;
-    float currentRecovery;
-    float currentMoveSpeed;
-    float currentMight;
-    float currentProjectileSpeed;
+    [HideInInspector]
+    public float currentHealth;
+    [HideInInspector]
+    public float currentRecovery;
+    [HideInInspector]
+    public float currentMoveSpeed;
+    [HideInInspector]
+    public float currentMight;
+    [HideInInspector]
+    public float currentProjectileSpeed;
 
     //Experience Level Player
     [Header("Experience/Level")]

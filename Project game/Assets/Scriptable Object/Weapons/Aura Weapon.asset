@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aura Weapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 6131279961215791031, guid: 0ca9bb934d21152459a88df45f74477f, type: 3}
-  Damage: 5
+  Damage: 10
   Speed: 2
-  CoolDownDuration: 4
+  CoolDownDuration: 1
   pierce: 0
