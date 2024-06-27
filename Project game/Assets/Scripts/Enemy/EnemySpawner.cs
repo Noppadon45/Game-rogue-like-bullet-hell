@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     {
         public string WaveName;
         public List<EnemyGroup> EnemyGroups;        //list of All EnemyGroup 
-        public int WaveQuata;   //All total Enemy spawn for this wave
+        public int WaveQuota;   //All total Enemy spawn for this wave
         public float Spawntime; //Time to Spawn 
         public int Spawncount;  //All total Enemy in game
     }
@@ -23,17 +23,67 @@ public class EnemySpawner : MonoBehaviour
         public GameObject EnemyPrefab;      //List of EnemyPrefab for this group
     }
 
-    public List<Wave> waves;    //List of All wave
+    public List<Wave> Waves;    //List of All wave
+    public int currentWave;         //Index of currentWave [Index start 0]
 
+    [Header("SpawnerTimer")]
+    float spawnTimer;       //Time to Spawn next Wave
+
+
+
+    Transform Player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = FindObjectOfType<PlayerStats>().transform;
+        CalWaveQuota();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Timer
+        spawnTimer += Time.deltaTime;
+
+        //If Timer >= Time to SpawnWave then SpawnEnemy
+        if (spawnTimer >= Waves[currentWave].Spawntime ) 
+        {
+            spawnTimer = 0f;
+            SpawnEnemy();
+        }
+    }
+
+
+    void CalWaveQuota()
+    {
+        int CurrentWaveQuota = 0;
+        foreach (var EnemyGroup in Waves[currentWave].EnemyGroups) 
+        {
+            CurrentWaveQuota += EnemyGroup.EnemyCount;
+
+        }
+        Waves[currentWave].WaveQuota = CurrentWaveQuota;
+        Debug.LogWarning(CurrentWaveQuota);
+    }
+
+    void SpawnEnemy()
+    {
+        //If current Enemy in Waves < Enemy in Quota
+        if (Waves[currentWave].Spawncount < Waves[currentWave].WaveQuota )
+        {
+            //Spawn Enemy Each of type until Quota
+            foreach (var EnemyGroups in Waves[currentWave].EnemyGroups)
+            {
+                //When Enemy Each of type < Emeny Each of type spawn
+                if (EnemyGroups.Spawncount < EnemyGroups.EnemyCount)
+                {
+                    Vector2 SpawnPositon = new Vector2(Player.transform.position.x + Random.Range(-10f, 10f) , Player.transform.position.y + Random.Range(-10f, 10f));
+                    Instantiate(EnemyGroups.EnemyPrefab, SpawnPositon, Quaternion.identity);
+
+                    EnemyGroups.Spawncount++;
+                    Waves[currentWave].Spawncount++;
+                }
+            }
+        }
     }
 }

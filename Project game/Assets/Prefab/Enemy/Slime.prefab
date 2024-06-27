@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8226498328333990800}
   - component: {fileID: -414376937118821369}
   m_Layer: 0
-  m_Name: Bat
+  m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 1536517939
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 129397804, guid: e00feef29395a6745bbd657ea474d4e4, type: 3}
+  m_Sprite: {fileID: 130358880, guid: 64cf4396e48b263438a9d93e0c63f17f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 909914064328256216}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 81b6cd72efe27e84bbfcc16a5239368a, type: 2}
+  m_Controller: {fileID: 9100000, guid: d480ca14032f96949b06dc371a217e0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.84375, y: 0.6875}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.84375, y: 0.6875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2800bd0697060694f9f78836539421cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData: {fileID: 11400000, guid: e1af4452045f2474e9b497bc7257f90e, type: 2}
+  EnemyData: {fileID: 11400000, guid: 5e9fd98a2f04369498e885067dc36ea7, type: 2}
   CurrentMoveSpeed: 0
   CurrentHealth: 0
   CurrentDamage: 0
