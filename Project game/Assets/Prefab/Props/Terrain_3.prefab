@@ -160,4 +160,4 @@ MonoBehaviour:
   drops:
   - Name: Medipack
     ItemPrefab: {fileID: 8045654967164620040, guid: 28bac21795149d040b7d3e4be59f7574, type: 3}
-    Droprate: 10
+    Droprate: 40
