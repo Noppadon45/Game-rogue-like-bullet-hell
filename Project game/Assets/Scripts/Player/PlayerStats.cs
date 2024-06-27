@@ -19,6 +19,9 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public float currentMagnet;
 
+    //Spawned Weapon
+    public List<GameObject> spawnedWeapons;
+
     //Experience Level Player
     [Header("Experience/Level")]
     public int experience = 0;
@@ -99,6 +102,9 @@ public class PlayerStats : MonoBehaviour
         currentMight = CharacterData.Might;
         currentProjectileSpeed = CharacterData.ProjectileSpeed;
         currentMagnet = CharacterData.Magnet;
+
+        //Spawn the start weapon
+        SpawnWeapon(CharacterData.StartingWeapon);
     }
     
 
@@ -150,5 +156,13 @@ public class PlayerStats : MonoBehaviour
         {
             currentHealth = CharacterData.MaxHealth;
         }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        //Spawn the staring weapon
+        GameObject spawnedWeapon = Instantiate (weapon , transform.position , Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform);   //Set Weapon to be child  of player
+        spawnedWeapons.Add(spawnedWeapon);      //Add it to List of SpawnnedWeapons
     }
 }
