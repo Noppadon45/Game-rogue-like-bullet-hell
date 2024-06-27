@@ -14,6 +14,20 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public float CurrentDamage;
 
+    public float deSpawnDistance = 20f;
+    Transform player;
+
+    void Start()
+    {
+        player = FindObjectOfType<PlayerStats>().transform;
+    }
+    void Update()
+    {
+        if (Vector2.Distance(transform.position, player.position) >= deSpawnDistance) 
+        {
+            SpawnNearPlayer();
+        }
+    }
     void Awake()
     {
         CurrentMoveSpeed = EnemyData.MoveSpeed;
@@ -52,4 +66,12 @@ public class EnemyStats : MonoBehaviour
         EnemySpawner EnemySpawner = FindObjectOfType<EnemySpawner>();
         EnemySpawner.Enemygetkill();
     }
+
+    //Spawn enemy again when enemy go far Player
+    void SpawnNearPlayer()
+    {
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        transform.position = player.position + enemySpawner.SpawnPositonEnemy[Random.Range(0 , enemySpawner.SpawnPositonEnemy.Count)].position;
+    }
 }
+    
