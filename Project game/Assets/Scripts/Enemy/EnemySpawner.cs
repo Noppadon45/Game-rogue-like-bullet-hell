@@ -32,7 +32,8 @@ public class EnemySpawner : MonoBehaviour
     public int MaxEnemyAlive;   //The maximum of Enemy alive in game
     public bool IsMaxEnemyAlive = false;
 
-
+    [Header("Spawn Positons")]
+    public List<Transform> SpawnPositonEnemy;   //Store List of Positon Enemy Spawn
 
 
     Transform Player;
@@ -87,8 +88,10 @@ public class EnemySpawner : MonoBehaviour
                         IsMaxEnemyAlive = true;
                         return;
                     }
-                    Vector2 SpawnPositon = new Vector2(Player.transform.position.x + Random.Range(-10f, 10f) , Player.transform.position.y + Random.Range(-10f, 10f));
-                    Instantiate(EnemyGroups.EnemyPrefab, SpawnPositon, Quaternion.identity);
+
+                    //Spawn Enemy random nearby Player
+                    Instantiate(EnemyGroups.EnemyPrefab, Player.position + SpawnPositonEnemy[Random.Range(0 , SpawnPositonEnemy.Count)].position, Quaternion.identity);
+                
 
                     EnemyGroups.Spawncount++;
                     Waves[currentWave].Spawncount++;
