@@ -46,4 +46,10 @@ public class EnemyStats : MonoBehaviour
             player.takeDamage(CurrentDamage);       //use EnemyData
         }
     }
+
+    private void OnDestroy()
+    {
+        EnemySpawner EnemySpawner = FindObjectOfType<EnemySpawner>();
+        EnemySpawner.Enemygetkill();
+    }
 }

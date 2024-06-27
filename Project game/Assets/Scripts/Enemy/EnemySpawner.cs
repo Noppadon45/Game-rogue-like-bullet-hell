@@ -28,6 +28,10 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("SpawnerTimer")]
     float spawnTimer;       //Time to Spawn next Wave
+    public int EnemyAlive;
+    public int MaxEnemyAlive;   //The maximum of Enemy alive in game
+    public bool IsMaxEnemyAlive = false;
+
 
 
 
@@ -69,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         //If current Enemy in Waves < Enemy in Quota
-        if (Waves[currentWave].Spawncount < Waves[currentWave].WaveQuota )
+        if (Waves[currentWave].Spawncount < Waves[currentWave].WaveQuota  && !IsMaxEnemyAlive)
         {
             //Spawn Enemy Each of type until Quota
             foreach (var EnemyGroups in Waves[currentWave].EnemyGroups)
@@ -77,13 +81,30 @@ public class EnemySpawner : MonoBehaviour
                 //When Enemy Each of type < Emeny Each of type spawn
                 if (EnemyGroups.Spawncount < EnemyGroups.EnemyCount)
                 {
+                    //Limit Enemy number can alive
+                    if (EnemyAlive >= MaxEnemyAlive)
+                    {
+                        IsMaxEnemyAlive = true;
+                        return;
+                    }
                     Vector2 SpawnPositon = new Vector2(Player.transform.position.x + Random.Range(-10f, 10f) , Player.transform.position.y + Random.Range(-10f, 10f));
                     Instantiate(EnemyGroups.EnemyPrefab, SpawnPositon, Quaternion.identity);
 
                     EnemyGroups.Spawncount++;
                     Waves[currentWave].Spawncount++;
+                    EnemyAlive++;
                 }
             }
         }
+        //Reset IsMaxEnemyAlive when IsMaxEnemyAlive is below Maximum
+        if (EnemyAlive < MaxEnemyAlive)
+        {
+            IsMaxEnemyAlive = false;
+        }
+    }
+    public void Enemygetkill()
+    {
+        //
+        EnemyAlive--;
     }
 }
