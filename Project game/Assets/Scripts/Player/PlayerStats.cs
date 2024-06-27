@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
     public float currentMight;
     [HideInInspector]
     public float currentProjectileSpeed;
+    [HideInInspector]
+    public float currentMagnet;
 
     //Experience Level Player
     [Header("Experience/Level")]
@@ -47,7 +49,7 @@ public class PlayerStats : MonoBehaviour
         experienceCap = levelRanges[0].experienceCapIncrease;   
     }
 
-    private void Update()
+    void Update()
     {
         if (IfreamTimer > 0) 
         {
@@ -58,6 +60,7 @@ public class PlayerStats : MonoBehaviour
         {
             Isifream = false;
         }
+        Recoverheal();
     }
     public void IncreaseExperience(int amount)
     {
@@ -91,6 +94,7 @@ public class PlayerStats : MonoBehaviour
         currentMoveSpeed = CharacterData.MoveSpeed;
         currentMight = CharacterData.Might;
         currentProjectileSpeed = CharacterData.ProjectileSpeed;
+        currentMagnet = CharacterData.Magnet;
     }
     
 
@@ -129,8 +133,18 @@ public class PlayerStats : MonoBehaviour
             {
                 currentHealth = CharacterData.MaxHealth;
             }
+        } 
+    }
+
+    void Recoverheal()
+    {
+        if (currentHealth < CharacterData.MaxHealth)
+        {
+            currentHealth += currentRecovery * Time.deltaTime;
         }
-        
-        
+        else if (currentHealth > CharacterData.MaxHealth)
+        {
+            currentHealth = CharacterData.MaxHealth;
+        }
     }
 }
