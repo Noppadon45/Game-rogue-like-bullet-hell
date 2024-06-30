@@ -16,7 +16,7 @@ public class AuraBehaviour : MeleeWeaponBehaviour
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
         {
             EnemyStats enemy = col.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
 
             markedEnemies.Add(col.gameObject);      //Market Cant take damage twice in roll
         }
@@ -24,7 +24,7 @@ public class AuraBehaviour : MeleeWeaponBehaviour
         {
             if (col.gameObject.TryGetComponent(out BreakbleProp breakble) && !markedEnemies.Contains(col.gameObject))
             {
-                breakble.TakeDamage(currentDamage);
+                breakble.TakeDamage(GetCurrentDamage());
                 markedEnemies.Add(col.gameObject);
             }
         }
