@@ -786,11 +786,11 @@ MonoBehaviour:
   - WaveName: Wave 1
     EnemyGroups:
     - EnemyName: Bat
-      EnemyCount: 3
+      EnemyCount: 20
       Spawncount: 0
       EnemyPrefab: {fileID: 909914064328256216, guid: 5ae734a33fc1a974ca4cccd9944c94a4, type: 3}
     - EnemyName: Slime
-      EnemyCount: 5
+      EnemyCount: 10
       Spawncount: 0
       EnemyPrefab: {fileID: 909914064328256216, guid: 315487e6127a237428d9966dde3d47f5, type: 3}
     WaveQuota: 0
@@ -798,7 +798,7 @@ MonoBehaviour:
     Spawncount: 0
   currentWave: 0
   EnemyAlive: 0
-  MaxEnemyAlive: 5
+  MaxEnemyAlive: 7
   IsMaxEnemyAlive: 0
   SpawnPositonEnemy:
   - {fileID: 477781368}

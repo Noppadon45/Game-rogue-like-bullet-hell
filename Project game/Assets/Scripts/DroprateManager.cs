@@ -16,6 +16,10 @@ public class DroprateManager : MonoBehaviour
 
     void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) //When stop game stop loading drop item
+        {
+            return;
+        }
         float randomnumber = UnityEngine.Random.Range(0f, 100f);
         List<Drops> possibledrop = new List<Drops>();
 
