@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -19,8 +20,7 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public float currentMagnet;
 
-    //Spawned Weapon
-    public List<GameObject> spawnedWeapons;
+
 
     //Experience Level Player
     [Header("Experience/Level")]
@@ -46,8 +46,13 @@ public class PlayerStats : MonoBehaviour
 
     public List<LevelRange> levelRanges;
 
+    Inventory inventory;
+    public int WeaponIndex;
+    public int PassiveIndex;
+
     void Start()
     {
+
         // initialize experience cap the first experience cap increase
         experienceCap = levelRanges[0].experienceCapIncrease;   
     }
@@ -92,8 +97,11 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
+
         CharacterData = CharacterSelect.GetData();
         CharacterSelect.instance.DestroySingleton();
+
+        inventory = GetComponent<Inventory>();
 
         //Assgin Variable
         currentHealth = CharacterData.MaxHealth;
@@ -160,9 +168,16 @@ public class PlayerStats : MonoBehaviour
 
     public void SpawnWeapon(GameObject weapon)
     {
+        if (WeaponIndex >= inventory.WeaponSlots.Count -1)
+        {
+            Debug.Log("Inventory Full");
+            return;
+        }
         //Spawn the staring weapon
         GameObject spawnedWeapon = Instantiate (weapon , transform.position , Quaternion.identity);
         spawnedWeapon.transform.SetParent(transform);   //Set Weapon to be child  of player
-        spawnedWeapons.Add(spawnedWeapon);      //Add it to List of SpawnnedWeapons
+        inventory.AddWeapon(WeaponIndex, spawnedWeapon.GetComponent<WeaponsController>());
+
+        WeaponIndex++;
     }
 }
