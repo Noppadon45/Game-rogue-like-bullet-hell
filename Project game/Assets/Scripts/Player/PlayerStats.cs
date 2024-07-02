@@ -50,6 +50,10 @@ public class PlayerStats : MonoBehaviour
     public int WeaponIndex;
     public int PassiveIndex;
 
+    public GameObject secondweapon;
+    public GameObject firstpassive, secondpasssive;
+
+
     void Start()
     {
 
@@ -113,6 +117,11 @@ public class PlayerStats : MonoBehaviour
 
         //Spawn the start weapon
         SpawnWeapon(CharacterData.StartingWeapon);
+
+        SpawnPassiveItem(firstpassive);
+        SpawnPassiveItem(secondpasssive);
+        SpawnWeapon(secondweapon);
+
     }
     
 
@@ -179,5 +188,20 @@ public class PlayerStats : MonoBehaviour
         inventory.AddWeapon(WeaponIndex, spawnedWeapon.GetComponent<WeaponsController>());
 
         WeaponIndex++;
+    }
+
+    public void SpawnPassiveItem(GameObject Passive)
+    {
+        if (WeaponIndex >= inventory.PassiveSlots.Count - 1)
+        {
+            Debug.Log("Inventory Full");
+            return;
+        }
+        //Spawn the staring Passive
+        GameObject spawnPassive = Instantiate(Passive, transform.position, Quaternion.identity);
+        spawnPassive.transform.SetParent(transform);   //Set Weapon to be child  of player
+        inventory.AddPassive(PassiveIndex, spawnPassive.GetComponent<Passiveitem>());
+
+        PassiveIndex++;
     }
 }
