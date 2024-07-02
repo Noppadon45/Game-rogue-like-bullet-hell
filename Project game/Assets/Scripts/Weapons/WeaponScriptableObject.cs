@@ -34,5 +34,5 @@ public class WeaponScriptableObject : ScriptableObject
 
     [SerializeField]
     GameObject nextLevelPrefab;     //Prefab the next level 
-    public GameObject NextLevel { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
+    public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
 }
