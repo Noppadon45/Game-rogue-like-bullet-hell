@@ -12,15 +12,20 @@ public class Inventory : MonoBehaviour
     public void AddWeapon (int Index , WeaponsController Weapon )   //Add Weapon to Inventory
     {
         WeaponSlots[Index] = Weapon;
+        WeaponLevels[Index] = Weapon.WeaponData.Level;
     }
     public void AddPassive (int Index , Passiveitem Passive )   //Add Passive to Inventory
     {
         PassiveSlots[Index] = Passive;
+        PassiveLevels[Index] = Passive.PassiveData.Level;
     }
 
     public void LevelUpWeapon (int Index)
     {
-
+        if (WeaponSlots.Count > Index)
+        {
+                
+        }
     }
     public void LevelUpPassive (int Index) 
     {

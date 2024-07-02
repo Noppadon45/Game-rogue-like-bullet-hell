@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Enumeration;
+using UnityEditor.Search;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponScriptableObject", menuName = "ScriptableObjects/Weapon")]
@@ -26,4 +27,12 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField]
     int pierce;
     public int Pierce { get => pierce; private set => pierce = value; }
+
+    [SerializeField]
+    int level;
+    public int Level { get => level; private set => level = value; }
+
+    [SerializeField]
+    GameObject nextLevelPrefab;     //Prefab the next level 
+    public GameObject NextLevel { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
 }

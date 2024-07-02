@@ -11,15 +11,13 @@ public class PassiveitemScriptableScript : ScriptableObject {
 
     public float Multiply { get => multiply; set => multiply = value; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    int level;
+    public int Level { get => level; private set => level = value; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    GameObject nextLevelPrefab;     //Prefab the next level 
+    public GameObject NextLevel { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
+
+
 }
