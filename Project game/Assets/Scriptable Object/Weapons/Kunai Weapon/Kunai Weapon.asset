@@ -18,4 +18,4 @@ MonoBehaviour:
   CoolDownDuration: 1
   pierce: 1
   level: 1
-  nextLevelPrefab: {fileID: 0}
+  nextLevelPrefab: {fileID: 5453590110231612517, guid: 7245fae585dcdf04fad4b620faa75844, type: 3}
