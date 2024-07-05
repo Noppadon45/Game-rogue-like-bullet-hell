@@ -19,5 +19,9 @@ public class PassiveitemScriptableScript : ScriptableObject {
     GameObject nextLevelPrefab;     //Prefab the next level 
     public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
 
+    [SerializeField]
+    Sprite Icon;        //Not mean modify in game just only in Editor
+    public Sprite icon { get => Icon; private set => Icon = value; }
+
 
 }
