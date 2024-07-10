@@ -7,19 +7,96 @@ public class PlayerStats : MonoBehaviour
 {
     CharacterSciptableObject CharacterData;
     //Current Stats Player
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentRecovery;
-    [HideInInspector]
-    public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentMight;
-    [HideInInspector]
-    public float currentProjectileSpeed;
-    [HideInInspector]
-    public float currentMagnet;
+    float currentHealth; 
+    float currentRecovery; 
+    float currentMoveSpeed;
+    float currentMight;
+    float currentProjectileSpeed;
+    float currentMagnet;
 
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {
+            //When value has changed
+            if (currentHealth != value)
+            {
+                currentHealth = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
+
+    public float CurrentRecovery
+    {
+        get { return currentRecovery; }
+        set
+        {
+            //When value has changed
+            if (currentRecovery != value)
+            {
+                currentRecovery = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
+
+    public float CurrentMoveSpeed
+    {
+        get { return currentMoveSpeed; }
+        set
+        {
+            //When value has changed
+            if (currentMoveSpeed != value)
+            {
+                currentMoveSpeed = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
+
+    public float CurrentMight
+    {
+        get { return currentMight; }
+        set
+        {
+            //When value has changed
+            if (currentMight != value)
+            {
+                currentMight = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
+
+    public float CurrentProjectileSpeed
+    {
+        get { return currentProjectileSpeed; }
+        set
+        {
+            //When value has changed
+            if (currentProjectileSpeed != value)
+            {
+                currentProjectileSpeed = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
+
+    public float CurrentMagnet
+    {
+        get { return currentMagnet; }
+        set
+        {
+            //When value has changed
+            if (currentMagnet != value)
+            {
+                currentMagnet = value;      //Update the value real time
+                //Add addition
+            }
+        }
+    }
 
 
     //Experience Level Player
@@ -108,12 +185,12 @@ public class PlayerStats : MonoBehaviour
         inventory = GetComponent<Inventory>();
 
         //Assgin Variable
-        currentHealth = CharacterData.MaxHealth;
-        currentRecovery = CharacterData.Recovery;
-        currentMoveSpeed = CharacterData.MoveSpeed;
-        currentMight = CharacterData.Might;
-        currentProjectileSpeed = CharacterData.ProjectileSpeed;
-        currentMagnet = CharacterData.Magnet;
+        CurrentHealth = CharacterData.MaxHealth;
+        CurrentRecovery = CharacterData.Recovery;
+        CurrentMoveSpeed = CharacterData.MoveSpeed;
+        CurrentMight = CharacterData.Might;
+        CurrentProjectileSpeed = CharacterData.ProjectileSpeed;
+        CurrentMagnet = CharacterData.Magnet;
 
         //Spawn the start weapon
         SpawnWeapon(CharacterData.StartingWeapon);
@@ -129,11 +206,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (!Isifream)
         {
-            currentHealth -= dmg;
+            CurrentHealth -= dmg;
 
             IfreamTimer = IfreamDuration;
             Isifream = true;
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 Kill();
             }
@@ -152,27 +229,29 @@ public class PlayerStats : MonoBehaviour
     public void Heal(float amount)
     {
         //Heal when health < maxHealth
-        if (currentHealth < CharacterData.MaxHealth)
+        if (CurrentHealth < CharacterData.MaxHealth)
         {
-            currentHealth += amount;
+            CurrentHealth += amount;
             //dont heal when Health >= maxHealth
-            if (currentHealth > CharacterData.MaxHealth)
+            if (CurrentHealth > CharacterData.MaxHealth)
             {
-                currentHealth = CharacterData.MaxHealth;
+                CurrentHealth = CharacterData.MaxHealth;
             }
         } 
     }
 
     void Recoverheal()
     {
-        if (currentHealth < CharacterData.MaxHealth)
+        if (CurrentHealth < CharacterData.MaxHealth)
         {
-            currentHealth += currentRecovery * Time.deltaTime;
+            CurrentHealth += CurrentRecovery * Time.deltaTime;
+
+            if (CurrentHealth > CharacterData.MaxHealth)
+            {
+                CurrentHealth = CharacterData.MaxHealth;
+            }
         }
-        else if (currentHealth > CharacterData.MaxHealth)
-        {
-            currentHealth = CharacterData.MaxHealth;
-        }
+        
     }
 
     public void SpawnWeapon(GameObject weapon)

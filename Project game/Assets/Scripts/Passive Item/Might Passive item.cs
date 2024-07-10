@@ -6,6 +6,6 @@ public class MightPassiveitem : Passiveitem
 {
     protected override void ApplyModifiler()
     {
-        Player.currentMight *= 1 + PassiveData.Multiply / 100f;
+        Player.CurrentMight *= 1 + PassiveData.Multiply / 100f;
     }
 }

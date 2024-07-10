@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void move()
     {
-        rb.velocity = new Vector2(moveDirection.x * playerStats.currentMoveSpeed, moveDirection.y * playerStats.currentMoveSpeed);
+        rb.velocity = new Vector2(moveDirection.x * playerStats.CurrentMoveSpeed, moveDirection.y * playerStats.CurrentMoveSpeed);
     }
 
 }
