@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aura Player
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 3530633890242960026, guid: 831908bb84979e0469c4db35756c4b52, type: 3}
-  maxHealth: 100
+  maxHealth: 10
   recovery: 1
   moveSpeed: 5
   might: 0

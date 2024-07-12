@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject PauseScene;
+    public GameObject ResultScene;
 
     //Current Stats Display
     public Text CurrentHealthDisplay;
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Text CurrentProjectileSpeedDisplay;
     public Text CurrentMagnetDisplay;
 
+    //Check IsGameOver or not
+    public bool IsGameOver = false;
     void Awake()
     {
         if (instance == null)
@@ -49,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         //Define the current State
 
-        switch (stateCurrent) 
+        switch (stateCurrent)
         {
             //State GamePlay
             case GameState.GamePlay:
@@ -63,6 +67,12 @@ public class GameManager : MonoBehaviour
 
             //State GameOver
             case GameState.GameOver:
+                if (!IsGameOver)
+                {
+                    IsGameOver = true;
+                    Debug.Log("State GameOver");
+                    ResultDisplay();
+                }
                 break;
 
             default:
@@ -119,6 +129,17 @@ public class GameManager : MonoBehaviour
     void DisableScene()
     {
         PauseScene.SetActive(false);
+        ResultScene.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        StateChange(GameState.GameOver);    
+    }
+
+    void ResultDisplay()
+    {
+        ResultScene.SetActive(true);
     }
     
 }

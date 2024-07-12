@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kunai Player
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 5453590110231612517, guid: f46185d215682c649b55a82201e9c1a2, type: 3}
-  maxHealth: 100
+  maxHealth: 10
   recovery: 1
   moveSpeed: 5
   might: 1

@@ -260,6 +260,11 @@ public class PlayerStats : MonoBehaviour
 
     public void Kill()
     {
+        //GameOver Scene
+        if (!GameManager.instance.IsGameOver) 
+        {
+            GameManager.instance.GameOver();
+        }
         Debug.Log("Player is Dead");
     }
 
