@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour
     float currentProjectileSpeed;
     float currentMagnet;
 
+
+    #region Stats Properties
     public float CurrentHealth
     {
         get { return currentHealth; }
@@ -23,6 +25,10 @@ public class PlayerStats : MonoBehaviour
             if (currentHealth != value)
             {
                 currentHealth = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentHealthDisplay.text = "Health " + currentHealth;
+                }
                 //Add addition
             }
         }
@@ -37,6 +43,10 @@ public class PlayerStats : MonoBehaviour
             if (currentRecovery != value)
             {
                 currentRecovery = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentRecoveryDisplay.text = "Recovery " + currentRecovery;
+                }
                 //Add addition
             }
         }
@@ -51,6 +61,10 @@ public class PlayerStats : MonoBehaviour
             if (currentMoveSpeed != value)
             {
                 currentMoveSpeed = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMoveSpeedDisplay.text = "MoveSpeed " + currentMoveSpeed;
+                }
                 //Add addition
             }
         }
@@ -65,6 +79,10 @@ public class PlayerStats : MonoBehaviour
             if (currentMight != value)
             {
                 currentMight = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMightDisplay.text = "Might " + currentMight;
+                }
                 //Add addition
             }
         }
@@ -79,6 +97,10 @@ public class PlayerStats : MonoBehaviour
             if (currentProjectileSpeed != value)
             {
                 currentProjectileSpeed = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentProjectileSpeedDisplay.text = "ProjectileSpeed " + currentProjectileSpeed;
+                }
                 //Add addition
             }
         }
@@ -93,10 +115,16 @@ public class PlayerStats : MonoBehaviour
             if (currentMagnet != value)
             {
                 currentMagnet = value;      //Update the value real time
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.CurrentMagnetDisplay.text = "Magnet " + currentMight;
+                }
                 //Add addition
             }
         }
     }
+
+    #endregion
 
 
     //Experience Level Player
@@ -135,7 +163,15 @@ public class PlayerStats : MonoBehaviour
     {
 
         // initialize experience cap the first experience cap increase
-        experienceCap = levelRanges[0].experienceCapIncrease;   
+        experienceCap = levelRanges[0].experienceCapIncrease;
+
+        //Set Current Stats Display
+        GameManager.instance.CurrentHealthDisplay.text = "currentHealth " + currentHealth;
+        GameManager.instance.CurrentRecoveryDisplay.text = "currentRecovery " + currentRecovery;
+        GameManager.instance.CurrentMoveSpeedDisplay.text = "currentMoveSpeed " + currentMoveSpeed;
+        GameManager.instance.CurrentMightDisplay.text = "currentMight " + currentMight;
+        GameManager.instance.CurrentProjectileSpeedDisplay.text = "ProjectileSpeed " + currentProjectileSpeed;
+        GameManager.instance.CurrentMagnetDisplay.text = "Magnet " + currentMagnet;
     }
 
     void Update()
@@ -199,6 +235,7 @@ public class PlayerStats : MonoBehaviour
         SpawnPassiveItem(secondpasssive);
         SpawnWeapon(secondweapon);
 
+        
     }
     
 

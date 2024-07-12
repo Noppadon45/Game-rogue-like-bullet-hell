@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     //State of Game 
     public enum GameState
     {
@@ -20,8 +23,25 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public GameObject PauseScene;
 
+    //Current Stats Display
+    public Text CurrentHealthDisplay;
+    public Text CurrentRecoveryDisplay;
+    public Text CurrentMoveSpeedDisplay;
+    public Text CurrentMightDisplay;
+    public Text CurrentProjectileSpeedDisplay;
+    public Text CurrentMagnetDisplay;
+
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }else
+        {
+            Debug.LogWarning("Extra" + this + "Delected");
+            Destroy(gameObject);
+        }
+
         DisableScene();
     }
 
