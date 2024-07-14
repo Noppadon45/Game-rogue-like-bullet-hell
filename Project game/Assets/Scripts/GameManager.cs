@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
                 if (!IsGameOver)
                 {
                     IsGameOver = true;
+                    Time.timeScale = 0f; //Stop game when GameOver
                     Debug.Log("State GameOver");
                     ResultDisplay();
                 }
