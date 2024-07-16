@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,17 +22,22 @@ public class GameManager : MonoBehaviour
 
     public GameState stateBefore;       //Store the stateBefore
 
-    [Header("UI")]
+    [Header("Scenes")]
     public GameObject PauseScene;
     public GameObject ResultScene;
 
     //Current Stats Display
+    [Header("Current Stats Display")]
     public Text CurrentHealthDisplay;
     public Text CurrentRecoveryDisplay;
     public Text CurrentMoveSpeedDisplay;
     public Text CurrentMightDisplay;
     public Text CurrentProjectileSpeedDisplay;
     public Text CurrentMagnetDisplay;
+
+    [Header("Result Scene")]
+    public Image CharacterImage;
+    public Text CharacterName;
 
     //Check IsGameOver or not
     public bool IsGameOver = false;
@@ -141,6 +147,12 @@ public class GameManager : MonoBehaviour
     void ResultDisplay()
     {
         ResultScene.SetActive(true);
+    }
+
+    public void AssignChooseCharacter(CharacterSciptableObject CharacterData) 
+    {
+        CharacterImage.sprite = CharacterData.Icon;
+        CharacterName.text = CharacterData.Name;
     }
     
 }

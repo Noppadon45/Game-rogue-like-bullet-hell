@@ -172,6 +172,8 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.CurrentMightDisplay.text = "currentMight " + currentMight;
         GameManager.instance.CurrentProjectileSpeedDisplay.text = "ProjectileSpeed " + currentProjectileSpeed;
         GameManager.instance.CurrentMagnetDisplay.text = "Magnet " + currentMagnet;
+
+        GameManager.instance.AssignChooseCharacter(CharacterData);
     }
 
     void Update()
