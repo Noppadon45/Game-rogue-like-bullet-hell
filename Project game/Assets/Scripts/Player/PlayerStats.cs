@@ -265,6 +265,7 @@ public class PlayerStats : MonoBehaviour
         //GameOver Scene
         if (!GameManager.instance.IsGameOver) 
         {
+            GameManager.instance.AssignLevelPlayer(level);
             GameManager.instance.GameOver();
         }
         Debug.Log("Player is Dead");

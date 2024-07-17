@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     [Header("Result Scene")]
     public Image CharacterImage;
     public Text CharacterName;
+    public Text LevelDisplay;
+    
 
     //Check IsGameOver or not
     public bool IsGameOver = false;
@@ -154,5 +156,11 @@ public class GameManager : MonoBehaviour
         CharacterImage.sprite = CharacterData.Icon;
         CharacterName.text = CharacterData.Name;
     }
-    
+
+    public void AssignLevelPlayer(int LevelData)
+    {
+        LevelDisplay.text = LevelData.ToString();
+    }
+
+
 }
