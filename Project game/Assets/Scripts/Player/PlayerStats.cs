@@ -266,6 +266,7 @@ public class PlayerStats : MonoBehaviour
         if (!GameManager.instance.IsGameOver) 
         {
             GameManager.instance.AssignLevelPlayer(level);
+            GameManager.instance.AssignWeaponandPassiveImage(inventory.WeaponUi , inventory.PassiveUi);
             GameManager.instance.GameOver();
         }
         Debug.Log("Player is Dead");
