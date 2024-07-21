@@ -39,8 +39,14 @@ public class GameManager : MonoBehaviour
     public Image CharacterImage;
     public Text CharacterName;
     public Text LevelDisplay;
+    public Text TimeSurviveDisplay;
     public List<Image> WeaponImage = new List<Image>(6);
     public List<Image> PassiveImage = new List<Image>(6);
+
+    [Header("StopWatch")]
+    float StopWatchTime;     //Current Time in Game
+    public float TimeLimit;     //Time limit in each second
+    public Text StopWatchDisplay;       //Show StopWatch Time in Game
     
 
     //Check IsGameOver or not
@@ -68,6 +74,7 @@ public class GameManager : MonoBehaviour
             //State GamePlay
             case GameState.GamePlay:
                 CheckState();
+                StopWatchTimeUpdate();
                 break;
 
             //State GamePause
@@ -145,6 +152,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        TimeSurviveDisplay.text = StopWatchDisplay.text;
+
         StateChange(GameState.GameOver);    
     }
 
@@ -207,4 +216,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void StopWatchTimeUpdate()
+    {
+        StopWatchTime += Time.deltaTime;
+
+        StopWatchTimeDisplay();
+
+        if (StopWatchTime > TimeLimit) 
+        {
+            GameOver();
+
+        }
+    }
+
+    void StopWatchTimeDisplay()
+    {
+        //Calulate Time in Each Game
+        int Minutes = Mathf.FloorToInt(StopWatchTime / 60);
+        int Second = Mathf.FloorToInt(StopWatchTime % 60);
+
+        //Display Time in Each Game
+        StopWatchDisplay.text = string.Format("{0:00}:{1:00}", Minutes , Second);
+    }
 }
