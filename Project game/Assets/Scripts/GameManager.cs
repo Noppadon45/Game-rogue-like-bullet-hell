@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.U2D.Animation;
 using UnityEditor.VersionControl;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     {
         GamePlay,
         GamePause,
-        GameOver
+        GameOver,
+        LevelUP
     }
     //Store Current State in Game
     public GameState stateCurrent;      //Store the stateCurrent
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     [Header("Scenes")]
     public GameObject PauseScene;
     public GameObject ResultScene;
+    public GameObject LevelUPScene;
 
     //Current Stats Display
     [Header("Current Stats Display")]
@@ -51,6 +54,10 @@ public class GameManager : MonoBehaviour
 
     //Check IsGameOver or not
     public bool IsGameOver = false;
+
+    //Check IsLevelUP or not
+    public bool IsLevelUP = false;
+
     void Awake()
     {
         if (instance == null)
@@ -90,6 +97,16 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0f; //Stop game when GameOver
                     Debug.Log("State GameOver");
                     ResultDisplay();
+                }
+                break;
+            //State LevelUP
+            case GameState.LevelUP:
+                if (!IsLevelUP)
+                {
+                    IsLevelUP = true;
+                    Time.timeScale = 0f;   //Stop game when LevelUP
+                    Debug.Log("LevelUPScene");
+                    LevelUPScene.SetActive(true);
                 }
                 break;
 
@@ -148,6 +165,7 @@ public class GameManager : MonoBehaviour
     {
         PauseScene.SetActive(false);
         ResultScene.SetActive(false);
+        LevelUPScene.SetActive(false);
     }
 
     public void GameOver()
@@ -238,4 +256,18 @@ public class GameManager : MonoBehaviour
         //Display Time in Each Game
         StopWatchDisplay.text = string.Format("{0:00}:{1:00}", Minutes , Second);
     }
+
+    public void LevelUPStart()
+    {
+        StateChange(GameState.LevelUP);     //Change State
+    }
+
+    public void LevelUPEnd()
+    {
+        IsLevelUP = false;      
+        Time.timeScale = 1;     //Resume Time in Game
+        LevelUPScene.SetActive(false);
+        StateChange(GameState.GamePlay);
+    }
+
 }
