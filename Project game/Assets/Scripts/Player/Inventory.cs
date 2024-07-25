@@ -12,6 +12,39 @@ public class Inventory : MonoBehaviour
     public int[] PassiveLevels = new int[6];
     public List<Image> PassiveUi = new List<Image>(6);
 
+    [System.Serializable]
+    public class WeaponUpgrade
+    {
+        public GameObject InitWeapon;
+        public WeaponScriptableObject WeaponData;
+    }
+    [System.Serializable]
+    public class PassiveUpgrade
+    {
+        public GameObject InitPassive;
+        public PassiveitemScriptableScript PassiveData;
+    }
+    [System.Serializable]
+    public class UpgradeUI
+    {
+        public Text UpgradeItemDisplay;
+        public Text DescriptionItemDisplay;
+        public Image UpgradeImageDisplay;
+        public Button UpgradeButton;
+    }
+
+    public List<WeaponUpgrade> WeaponUpgradesOptions = new List<WeaponUpgrade>();   //List WeaponUpgrade Option for Weapon
+    public List<PassiveUpgrade> PassiveUpgradesOptions = new List<PassiveUpgrade>();    //List PassiveUpgrade Option for Passive
+    public List<UpgradeUI> UpgradeUIOptions = new List<UpgradeUI>();    //List UpgradeUI Option in scene
+
+    PlayerStats Player;
+
+    void Start()
+    {
+        Player = GetComponent<PlayerStats>();
+    }
+
+
     public void AddWeapon (int Index , WeaponsController Weapon )   //Add Weapon to Inventory
     {
         WeaponSlots[Index] = Weapon;
@@ -61,6 +94,74 @@ public class Inventory : MonoBehaviour
             AddPassive(Index, UpgradePassive.GetComponent<Passiveitem>());
             Destroy(Passive.gameObject);
             PassiveLevels[Index] = UpgradePassive.GetComponent<Passiveitem>().PassiveData.Level;     //Check correct Levelup Passive
+        }
+    }
+
+    void ApplyUpgradeOption()
+    {
+        foreach (var UpgradeOption in UpgradeUIOptions)
+        {
+            int UpgradeType = Random.Range(1, 3);   //Choose between Weapon and Passive Items
+            if (UpgradeType == 1)
+            {
+                WeaponUpgrade chooseWeaponUpgrade = WeaponUpgradesOptions[Random.Range(0, WeaponUpgradesOptions.Count)];
+                
+                if (chooseWeaponUpgrade != null)
+                {
+                    bool NewWeapon = false;     //Check that is a new Weapon or not
+                    for (int i = 0; i < WeaponSlots.Count; i++) 
+                    {
+                        if (WeaponSlots[i] != null && WeaponSlots[i].WeaponData == chooseWeaponUpgrade.WeaponData)
+                        {
+                            NewWeapon = false;
+                            if (!NewWeapon)
+                            {
+                                UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpWeapon(i));        //Button function when choose Weapon and have Weapon then UpgradeWeapon
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            NewWeapon = true;
+                        }
+                    }
+                    if (NewWeapon)      //Spawn New Weapon
+                    {
+                        UpgradeOption.UpgradeButton.onClick.AddListener(() => Player.SpawnWeapon(chooseWeaponUpgrade.InitWeapon));  //Button function when choose Weapon and dont have Weapon then Spawn new Weapon
+
+                    }
+                }
+            }
+            else if (UpgradeType == 2)
+            {
+                PassiveUpgrade choosePassiveUpgrade = PassiveUpgradesOptions[Random.Range(0, PassiveUpgradesOptions.Count)];
+
+                if (choosePassiveUpgrade != null) 
+                {
+                    bool NewPassive = false;    //Check that is a new Passive or not
+                    for (int i = 0; i < PassiveSlots.Count; i++) 
+                    {
+                        if (PassiveSlots[i] != null && PassiveSlots[i].PassiveData == choosePassiveUpgrade.PassiveData)
+                        {
+                            NewPassive = false;
+                            if (!NewPassive)
+                            {
+                                UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpPassive(i));       //Button function when choose Passive and have Passive then UpgradePassive
+                            }
+                            break;
+                        }else
+                        {
+                            NewPassive = true;
+                        }
+
+                    }
+                    if (NewPassive)
+                    {
+                        UpgradeOption.UpgradeButton.onClick.AddListener(() => Player.SpawnPassiveItem(choosePassiveUpgrade.InitPassive));       //Button function when choose Passive and dont have Passive then Spawn new Passive
+                    }
+
+                }
+            }
         }
     }
 }
