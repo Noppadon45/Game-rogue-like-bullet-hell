@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,6 +52,11 @@ public class Inventory : MonoBehaviour
         WeaponLevels[Index] = Weapon.WeaponData.Level;
         WeaponUi[Index].enabled = true;                     //Enable  the image Conponent
         WeaponUi[Index].sprite = Weapon.WeaponData.icon;
+
+        if (GameManager.instance != null && GameManager.instance.IsLevelUP)
+        {
+            GameManager.instance.LevelUPEnd();
+        }
     }
     public void AddPassive (int Index , Passiveitem Passive )   //Add Passive to Inventory
     {
@@ -58,6 +64,11 @@ public class Inventory : MonoBehaviour
         PassiveLevels[Index] = Passive.PassiveData.Level;
         PassiveUi[Index].enabled = true;                     //Enable  the image Conponent
         PassiveUi[Index].sprite = Passive.PassiveData.icon;
+
+        if (GameManager.instance != null && GameManager.instance.IsLevelUP)
+        {
+            GameManager.instance.LevelUPEnd();
+        }
     }
 
     public void LevelUpWeapon (int Index)
@@ -76,6 +87,11 @@ public class Inventory : MonoBehaviour
             AddWeapon(Index, UpgradeWeapon.GetComponent<WeaponsController>());
             Destroy(Weapon.gameObject);
             WeaponLevels[Index] = UpgradeWeapon.GetComponent<WeaponsController>().WeaponData.Level;     //Check correct Levelup Weapon
+
+            if (GameManager.instance != null && GameManager.instance.IsLevelUP)
+            {
+                GameManager.instance.LevelUPEnd();
+            }
         }
     }
     public void LevelUpPassive (int Index) 
@@ -94,6 +110,11 @@ public class Inventory : MonoBehaviour
             AddPassive(Index, UpgradePassive.GetComponent<Passiveitem>());
             Destroy(Passive.gameObject);
             PassiveLevels[Index] = UpgradePassive.GetComponent<Passiveitem>().PassiveData.Level;     //Check correct Levelup Passive
+
+            if (GameManager.instance != null && GameManager.instance.IsLevelUP)
+            {
+                GameManager.instance.LevelUPEnd();
+            }
         }
     }
 
@@ -117,6 +138,10 @@ public class Inventory : MonoBehaviour
                             if (!NewWeapon)
                             {
                                 UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpWeapon(i));        //Button function when choose Weapon and have Weapon then UpgradeWeapon
+
+                                //Set the Desciption and name to the next level
+                                UpgradeOption.DescriptionItemDisplay.text = chooseWeaponUpgrade.WeaponData.NextLevelPrefab.GetComponent<WeaponsController>().WeaponData.NameDescription;
+                                UpgradeOption.UpgradeItemDisplay.text = chooseWeaponUpgrade.WeaponData.NextLevelPrefab.GetComponent<WeaponsController>().WeaponData.Name;
                             }
                             break;
                         }
@@ -129,7 +154,12 @@ public class Inventory : MonoBehaviour
                     {
                         UpgradeOption.UpgradeButton.onClick.AddListener(() => Player.SpawnWeapon(chooseWeaponUpgrade.InitWeapon));  //Button function when choose Weapon and dont have Weapon then Spawn new Weapon
 
+                        //Apply the init Description and name
+                        UpgradeOption.DescriptionItemDisplay.text = chooseWeaponUpgrade.WeaponData.NameDescription;
+                        UpgradeOption.UpgradeItemDisplay.text = chooseWeaponUpgrade.WeaponData.Name;
+
                     }
+                    UpgradeOption.UpgradeImageDisplay.sprite = chooseWeaponUpgrade.WeaponData.icon;
                 }
             }
             else if (UpgradeType == 2)
@@ -147,6 +177,10 @@ public class Inventory : MonoBehaviour
                             if (!NewPassive)
                             {
                                 UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpPassive(i));       //Button function when choose Passive and have Passive then UpgradePassive
+
+                                //Set the Desciption and name to the next level
+                                UpgradeOption.DescriptionItemDisplay.text = choosePassiveUpgrade.PassiveData.NextLevelPrefab.GetComponent<Passiveitem>().PassiveData.NameDescription;
+                                UpgradeOption.UpgradeItemDisplay.text = choosePassiveUpgrade.PassiveData.NextLevelPrefab.GetComponent<Passiveitem>().PassiveData.Name;
                             }
                             break;
                         }else
@@ -158,10 +192,30 @@ public class Inventory : MonoBehaviour
                     if (NewPassive)
                     {
                         UpgradeOption.UpgradeButton.onClick.AddListener(() => Player.SpawnPassiveItem(choosePassiveUpgrade.InitPassive));       //Button function when choose Passive and dont have Passive then Spawn new Passive
+
+                        //Apply the init Description and name
+                        UpgradeOption.DescriptionItemDisplay.text = choosePassiveUpgrade.PassiveData.NameDescription;
+                        UpgradeOption.UpgradeItemDisplay.text = choosePassiveUpgrade.PassiveData.Name;
                     }
+                    UpgradeOption.UpgradeImageDisplay.sprite = choosePassiveUpgrade.PassiveData.icon;
+
 
                 }
             }
         }
+    }
+
+    void RemoveUpgradeOption()
+    {
+        foreach (var UpgradeOption in UpgradeUIOptions)
+        {
+            UpgradeOption.UpgradeButton.onClick.RemoveAllListeners();
+        }
+    }
+
+    public void RemoveandApplyUpgrade()
+    {
+        RemoveUpgradeOption();
+        ApplyUpgradeOption();
     }
 }

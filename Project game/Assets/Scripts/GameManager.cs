@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     //Check IsLevelUP or not
     public bool IsLevelUP = false;
 
+    //Reference to PlayerObject
+    public GameObject PlayerObject;
+
     void Awake()
     {
         if (instance == null)
@@ -260,6 +263,7 @@ public class GameManager : MonoBehaviour
     public void LevelUPStart()
     {
         StateChange(GameState.LevelUP);     //Change State
+        PlayerObject.SendMessage("RemoveandApplyUpgrade");
     }
 
     public void LevelUPEnd()

@@ -37,6 +37,15 @@ public class WeaponScriptableObject : ScriptableObject
     public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
 
     [SerializeField]
+    new string name;        //Name of Weapon or Passive when getting Upgrade
+    public string Name { get => name; private set => name = value; }
+
+    [SerializeField]
+    string nameDescription;     //Description of Weapon or Passive when getting Upgrade
+    public string NameDescription { get => nameDescription; private set => nameDescription = value; }
+
+
+    [SerializeField]
     Sprite Icon;        //Not mean modify in game just only in Editor
     public Sprite icon { get => Icon; private set => Icon = value; }
 }

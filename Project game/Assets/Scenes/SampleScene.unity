@@ -1178,6 +1178,17 @@ MonoBehaviour:
   - {fileID: 1331905418}
   - {fileID: 1091212674}
   - {fileID: 134607266}
+  WeaponUpgradesOptions:
+  - InitWeapon: {fileID: 0}
+    WeaponData: {fileID: 0}
+  PassiveUpgradesOptions:
+  - InitPassive: {fileID: 0}
+    PassiveData: {fileID: 0}
+  UpgradeUIOptions:
+  - UpgradeItemDisplay: {fileID: 0}
+    DescriptionItemDisplay: {fileID: 0}
+    UpgradeImageDisplay: {fileID: 0}
+    UpgradeButton: {fileID: 0}
 --- !u!1 &344497677
 GameObject:
   m_ObjectHideFlags: 0
