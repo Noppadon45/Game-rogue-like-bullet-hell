@@ -15,4 +15,6 @@ MonoBehaviour:
   multiply: 100
   level: 1
   nextLevelPrefab: {fileID: 2015644174274145517, guid: b825b410718a8464ea5eca4454d4d6a9, type: 3}
+  name: Might
+  nameDescription: Increase might 100%
   Icon: {fileID: 21300000, guid: b4630f03b1f660d44a55830d55a747bd, type: 2}

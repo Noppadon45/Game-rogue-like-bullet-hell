@@ -19,4 +19,6 @@ MonoBehaviour:
   pierce: 5
   level: 1
   nextLevelPrefab: {fileID: 3530633890242960026, guid: 716373c0d765ae04585575289247a0ef, type: 3}
+  name: Aura
+  nameDescription: Deal damage around player
   Icon: {fileID: 21300000, guid: 9f6f0481bdd1f284fa6b6c7f4e8e8e92, type: 2}

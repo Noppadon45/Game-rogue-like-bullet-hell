@@ -19,4 +19,6 @@ MonoBehaviour:
   pierce: 1
   level: 1
   nextLevelPrefab: {fileID: 5453590110231612517, guid: 7245fae585dcdf04fad4b620faa75844, type: 3}
+  name: Kunai
+  nameDescription: Shoot kunai in the direction of the player facing
   Icon: {fileID: 21300000, guid: ff7d579f40c683143971b85ca9eff1ac, type: 3}

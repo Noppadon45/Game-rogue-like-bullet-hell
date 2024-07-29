@@ -19,4 +19,6 @@ MonoBehaviour:
   pierce: 2
   level: 2
   nextLevelPrefab: {fileID: 0}
+  name: Kunai Lv 2
+  nameDescription: Damage +2 , Pierce + 1
   Icon: {fileID: 21300000, guid: ff7d579f40c683143971b85ca9eff1ac, type: 3}
