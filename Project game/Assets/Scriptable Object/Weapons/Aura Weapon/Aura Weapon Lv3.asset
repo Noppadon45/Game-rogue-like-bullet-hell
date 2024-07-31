@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e57e281575927143b5e182c1d90510f, type: 3}
-  m_Name: Aura Weapon Lv2
+  m_Name: Aura Weapon Lv3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6131279961215791031, guid: 4988d3fc298e0804f8659737a9e23776, type: 3}
-  Damage: 15
+  prefab: {fileID: 6131279961215791031, guid: 1082ed9d71547384ea815564cc7d6f36, type: 3}
+  Damage: 20
   Speed: 5
   CoolDownDuration: 7
   pierce: 5
-  level: 2
-  nextLevelPrefab: {fileID: 3530633890242960026, guid: d9090b3b650ef4d4cbcce9fd0883882b, type: 3}
-  name: Aura Lv 2
+  level: 3
+  nextLevelPrefab: {fileID: 0}
+  name: Aura Lv 3
   nameDescription: Damage + 5
   Icon: {fileID: 21300000, guid: 9f6f0481bdd1f284fa6b6c7f4e8e8e92, type: 2}

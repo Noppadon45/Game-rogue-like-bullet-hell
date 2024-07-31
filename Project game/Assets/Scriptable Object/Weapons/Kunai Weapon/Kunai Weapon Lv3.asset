@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e57e281575927143b5e182c1d90510f, type: 3}
-  m_Name: Kunai Weapon Lv2
+  m_Name: Kunai Weapon Lv3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5518856918536006726, guid: 13cc66aa5c3fc0746bfd2fa0198140af, type: 3}
-  Damage: 7
+  prefab: {fileID: 5518856918536006726, guid: ebebfdee87f91aa45a5fe28a5148228e, type: 3}
+  Damage: 10
   Speed: 5
   CoolDownDuration: 1
   pierce: 2
   level: 2
-  nextLevelPrefab: {fileID: 5453590110231612517, guid: 49f3b8015e8978e4b9cbd2ba0528e151, type: 3}
-  name: Kunai Lv 2
-  nameDescription: Damage +2 , Pierce + 1
+  nextLevelPrefab: {fileID: 0}
+  name: Kunai Lv 3
+  nameDescription: Damage +3
   Icon: {fileID: 21300000, guid: ff7d579f40c683143971b85ca9eff1ac, type: 3}
