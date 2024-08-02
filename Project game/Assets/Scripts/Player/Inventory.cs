@@ -126,15 +126,37 @@ public class Inventory : MonoBehaviour
 
     void ApplyUpgradeOption()
     {
+        List <WeaponUpgrade> UpgradeWeaponavailable = new List <WeaponUpgrade>(WeaponUpgradesOptions);
+        List <PassiveUpgrade> UpgradePassiveavailable = new List <PassiveUpgrade>(PassiveUpgradesOptions);
+
         foreach (var UpgradeOption in UpgradeUIOptions)
         {
-            int UpgradeType = Random.Range(1, 3);   //Choose between Weapon and Passive Items
+            if (UpgradeWeaponavailable.Count == 0 && UpgradePassiveavailable.Count == 0)
+            {
+                return;
+            }
+            int UpgradeType;
+            if (UpgradeWeaponavailable.Count == 0)      //When dont have Weapon Item show Passive Item Only
+            {
+                UpgradeType = 2;
+            }
+            else if (UpgradePassiveavailable.Count == 0)         //When dont have Passive Item show Weapon Item Only
+            {
+                UpgradeType = 1;
+            }else
+            {
+                UpgradeType = Random.Range(1, 3);       //If Weapon or Passive avalible Choose between Weapon or Passive Item
+            }
+
             if (UpgradeType == 1)
             {
-                WeaponUpgrade chooseWeaponUpgrade = WeaponUpgradesOptions[Random.Range(0, WeaponUpgradesOptions.Count)];
+                WeaponUpgrade chooseWeaponUpgrade = UpgradeWeaponavailable[Random.Range(0, UpgradeWeaponavailable.Count)];
+
+                UpgradeWeaponavailable.Remove(chooseWeaponUpgrade);         //Remove Weapon Upgrade Option when player already that Weapon
                 
                 if (chooseWeaponUpgrade != null)
                 {
+                    EnableUpgradeUI(UpgradeOption);
                     bool NewWeapon = false;     //Check that is a new Weapon or not
                     for (int i = 0; i < WeaponSlots.Count; i++) 
                     {
@@ -143,6 +165,12 @@ public class Inventory : MonoBehaviour
                             NewWeapon = false;
                             if (!NewWeapon)
                             {
+                                if (!chooseWeaponUpgrade.WeaponData.NextLevelPrefab)    //When dont have next Level Weapon
+                                {
+                                    DisableUpgradeUI(UpgradeOption);
+                                    break;
+
+                                }
                                 UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpWeapon(i, chooseWeaponUpgrade.WeaponUpgradeIndex));        //Button function when choose Weapon and have Weapon then UpgradeWeapon
 
                                 //Set the Desciption and name to the next level
@@ -170,10 +198,13 @@ public class Inventory : MonoBehaviour
             }
             else if (UpgradeType == 2)
             {
-                PassiveUpgrade choosePassiveUpgrade = PassiveUpgradesOptions[Random.Range(0, PassiveUpgradesOptions.Count)];
+                PassiveUpgrade choosePassiveUpgrade = UpgradePassiveavailable[Random.Range(0, UpgradePassiveavailable.Count)];
+
+                UpgradePassiveavailable.Remove(choosePassiveUpgrade);       //Remove Passive Upgrade Option when player already that Passive
 
                 if (choosePassiveUpgrade != null) 
                 {
+                    EnableUpgradeUI(UpgradeOption);
                     bool NewPassive = false;    //Check that is a new Passive or not
                     for (int i = 0; i < PassiveSlots.Count; i++) 
                     {
@@ -182,6 +213,11 @@ public class Inventory : MonoBehaviour
                             NewPassive = false;
                             if (!NewPassive)
                             {
+                                if (!choosePassiveUpgrade.PassiveData.NextLevelPrefab)
+                                {
+                                    DisableUpgradeUI(UpgradeOption);
+                                    break;
+                                }
                                 UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpPassive(i , choosePassiveUpgrade.PassiveUpgradeIndex));       //Button function when choose Passive and have Passive then UpgradePassive
 
                                 //Set the Desciption and name to the next level
@@ -216,6 +252,7 @@ public class Inventory : MonoBehaviour
         foreach (var UpgradeOption in UpgradeUIOptions)
         {
             UpgradeOption.UpgradeButton.onClick.RemoveAllListeners();
+            DisableUpgradeUI(UpgradeOption);        //Disable UpgradeUI for disable all UI option  before applying upgrade to them
         }
     }
 
@@ -223,5 +260,14 @@ public class Inventory : MonoBehaviour
     {
         RemoveUpgradeOption();
         ApplyUpgradeOption();
+    }
+
+    void DisableUpgradeUI(UpgradeUI UI)
+    {
+        UI.UpgradeItemDisplay.transform.parent.gameObject.SetActive(false);
+    }
+     void EnableUpgradeUI(UpgradeUI UI)
+    {
+        UI.UpgradeItemDisplay.transform.parent.gameObject.SetActive(true);
     }
 }
