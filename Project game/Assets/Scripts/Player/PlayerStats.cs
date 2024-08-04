@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -155,6 +156,9 @@ public class PlayerStats : MonoBehaviour
     public int WeaponIndex;
     public int PassiveIndex;
 
+    [Header("UI")]
+    public Image HealthBar;
+
     public GameObject secondweapon;
     public GameObject firstpassive, secondpasssive;
 
@@ -174,6 +178,8 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.CurrentMagnetDisplay.text = "Magnet " + currentMagnet;
 
         GameManager.instance.AssignChooseCharacter(CharacterData);
+
+        UpdateHealthBar();
     }
 
     void Update()
@@ -255,12 +261,19 @@ public class PlayerStats : MonoBehaviour
             {
                 Kill();
             }
+
+            UpdateHealthBar();
         }
         else
         {
 
         }
-    } 
+    }
+
+    void UpdateHealthBar()
+    {
+        HealthBar.fillAmount = currentHealth / CharacterData.MaxHealth;
+    }
 
     public void Kill()
     {
