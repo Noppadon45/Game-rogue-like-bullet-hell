@@ -158,6 +158,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("UI")]
     public Image HealthBar;
+    public Image ExperienceBar;
+    public Text LevelDisplay;
 
     public GameObject secondweapon;
     public GameObject firstpassive, secondpasssive;
@@ -180,6 +182,8 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.AssignChooseCharacter(CharacterData);
 
         UpdateHealthBar();
+        UpdateExperienceBar();
+        UpdateLevelUP();
     }
 
     void Update()
@@ -194,11 +198,15 @@ public class PlayerStats : MonoBehaviour
             Isifream = false;
         }
         Recoverheal();
+
+        UpdateHealthBar();
     }
     public void IncreaseExperience(int amount)
     {
         experience += amount;
         LevelupCheck();
+
+        UpdateExperienceBar();
     }
 
     void LevelupCheck()
@@ -217,6 +225,8 @@ public class PlayerStats : MonoBehaviour
                 }
             }
             experienceCap += experienceCapIncrease;
+
+            UpdateLevelUP();
 
             GameManager.instance.LevelUPStart();
         }
@@ -273,6 +283,16 @@ public class PlayerStats : MonoBehaviour
     void UpdateHealthBar()
     {
         HealthBar.fillAmount = currentHealth / CharacterData.MaxHealth;
+    }
+
+    void UpdateExperienceBar()
+    {
+        ExperienceBar.fillAmount = (float)experience / experienceCap;       //Cal Experience and fill in Experience Bar
+    }
+
+    void UpdateLevelUP()
+    {
+        LevelDisplay.text = "Lv " + level.ToString();       //Update Lv in top right in game
     }
 
     public void Kill()
