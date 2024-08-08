@@ -5100,8 +5100,35 @@ MonoBehaviour:
     WaveQuota: 0
     Spawntime: 3
     Spawncount: 0
+  - WaveName: Wave 2
+    EnemyGroups:
+    - EnemyName: Bat
+      EnemyCount: 20
+      Spawncount: 0
+      EnemyPrefab: {fileID: 909914064328256216, guid: 5ae734a33fc1a974ca4cccd9944c94a4, type: 3}
+    - EnemyName: Slime
+      EnemyCount: 10
+      Spawncount: 0
+      EnemyPrefab: {fileID: 909914064328256216, guid: 315487e6127a237428d9966dde3d47f5, type: 3}
+    WaveQuota: 0
+    Spawntime: 3
+    Spawncount: 0
+  - WaveName: Wave 3
+    EnemyGroups:
+    - EnemyName: Bat
+      EnemyCount: 20
+      Spawncount: 0
+      EnemyPrefab: {fileID: 909914064328256216, guid: 5ae734a33fc1a974ca4cccd9944c94a4, type: 3}
+    - EnemyName: Slime
+      EnemyCount: 10
+      Spawncount: 0
+      EnemyPrefab: {fileID: 909914064328256216, guid: 315487e6127a237428d9966dde3d47f5, type: 3}
+    WaveQuota: 0
+    Spawntime: 3
+    Spawncount: 0
   currentWave: 0
   EnemyAlive: 0
+  waveInterval: 5
   MaxEnemyAlive: 7
   IsMaxEnemyAlive: 0
   SpawnPositonEnemy:
@@ -8276,7 +8303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.5844, y: 0}
+  m_AnchoredPosition: {x: 1.5844116, y: 0}
   m_SizeDelta: {x: 1003.3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002562952

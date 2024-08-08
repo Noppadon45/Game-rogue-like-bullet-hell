@@ -29,8 +29,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("SpawnerTimer")]
     float spawnTimer;       //Time to Spawn next Wave
     public int EnemyAlive;
+    public float waveInterval;
     public int MaxEnemyAlive;   //The maximum of Enemy alive in game
     public bool IsMaxEnemyAlive = false;
+    bool IsWaveActive = false;
+    
 
     [Header("Spawn Positons")]
     public List<Transform> SpawnPositonEnemy;   //Store List of Positon Enemy Spawn
@@ -47,6 +50,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentWave < Waves.Count && Waves[currentWave].Spawncount == 0 && !IsWaveActive)
+        {
+            StartCoroutine(BeginNextWave());
+        }
         //Timer
         spawnTimer += Time.deltaTime;
 
@@ -55,6 +62,20 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnTimer = 0f;
             SpawnEnemy();
+        }
+    }
+        
+    IEnumerator BeginNextWave()
+    {
+        IsWaveActive = true;
+        //Wait for the next wave current
+        yield return new WaitForSeconds(waveInterval);
+
+        if (currentWave < Waves.Count - 1)
+        {
+            IsWaveActive = false;   
+            currentWave++;
+            CalWaveQuota();
         }
     }
 
@@ -82,20 +103,20 @@ public class EnemySpawner : MonoBehaviour
                 //When Enemy Each of type < Emeny Each of type spawn
                 if (EnemyGroups.Spawncount < EnemyGroups.EnemyCount)
                 {
+                    
+                    //Spawn Enemy random nearby Player
+                    Instantiate(EnemyGroups.EnemyPrefab, Player.position + SpawnPositonEnemy[Random.Range(0 , SpawnPositonEnemy.Count)].position, Quaternion.identity);
+                
+                    EnemyGroups.Spawncount++;
+                    Waves[currentWave].Spawncount++;
+                    EnemyAlive++;
+
                     //Limit Enemy number can alive
                     if (EnemyAlive >= MaxEnemyAlive)
                     {
                         IsMaxEnemyAlive = true;
                         return;
                     }
-
-                    //Spawn Enemy random nearby Player
-                    Instantiate(EnemyGroups.EnemyPrefab, Player.position + SpawnPositonEnemy[Random.Range(0 , SpawnPositonEnemy.Count)].position, Quaternion.identity);
-                
-
-                    EnemyGroups.Spawncount++;
-                    Waves[currentWave].Spawncount++;
-                    EnemyAlive++;
                 }
             }
         }
@@ -107,7 +128,13 @@ public class EnemySpawner : MonoBehaviour
     }
     public void Enemygetkill()
     {
-        //
+        //Decrease Enemy Alive
         EnemyAlive--;
+
+        //Reset IsMaxEnemyAlive when IsMaxEnemyAlive is below Maximum
+        if (EnemyAlive < MaxEnemyAlive)
+        {
+            IsMaxEnemyAlive = false;
+        }
     }
 }
