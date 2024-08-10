@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class Medipack : Pickup , Icollectable
+public class Medipack : Pickup 
 {
     public int HealRestore;
-    public void Collect()
+    public override void Collect()
     {
+        if (IsCollect)
+        {
+            return;
+        }
+        else
+        {
+            base.Collect();
+        }
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.Heal(HealRestore);
     }
