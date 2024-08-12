@@ -5,6 +5,7 @@ using UnityEditor.U2D.Animation;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
@@ -31,25 +32,25 @@ public class GameManager : MonoBehaviour
 
     //Current Stats Display
     [Header("Current Stats Display")]
-    public Text CurrentHealthDisplay;
-    public Text CurrentRecoveryDisplay;
-    public Text CurrentMoveSpeedDisplay;
-    public Text CurrentMightDisplay;
-    public Text CurrentProjectileSpeedDisplay;
-    public Text CurrentMagnetDisplay;
+    public TMP_Text CurrentHealthDisplay;
+    public TMP_Text CurrentRecoveryDisplay;
+    public TMP_Text CurrentMoveSpeedDisplay;
+    public TMP_Text CurrentMightDisplay;
+    public TMP_Text CurrentProjectileSpeedDisplay;
+    public TMP_Text CurrentMagnetDisplay;
 
     [Header("Result Scene")]
     public Image CharacterImage;
-    public Text CharacterName;
-    public Text LevelDisplay;
-    public Text TimeSurviveDisplay;
+    public TMP_Text CharacterName;
+    public TMP_Text LevelDisplay;
+    public TMP_Text TimeSurviveDisplay;
     public List<Image> WeaponImage = new List<Image>(6);
     public List<Image> PassiveImage = new List<Image>(6);
 
     [Header("StopWatch")]
     float StopWatchTime;     //Current Time in Game
     public float TimeLimit;     //Time limit in each second
-    public Text StopWatchDisplay;       //Show StopWatch Time in Game
+    public TMPro.TMP_Text StopWatchDisplay;       //Show StopWatch Time in Game
     
 
     //Check IsGameOver or not

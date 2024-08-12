@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -159,7 +160,7 @@ public class PlayerStats : MonoBehaviour
     [Header("UI")]
     public Image HealthBar;
     public Image ExperienceBar;
-    public Text LevelDisplay;
+    public TMP_Text LevelDisplay;
 
     public GameObject secondweapon;
     public GameObject firstpassive, secondpasssive;

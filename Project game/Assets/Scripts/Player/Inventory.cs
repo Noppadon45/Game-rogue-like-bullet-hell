@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -30,8 +31,8 @@ public class Inventory : MonoBehaviour
     [System.Serializable]
     public class UpgradeUI
     {
-        public Text UpgradeItemDisplay;
-        public Text DescriptionItemDisplay;
+        public TMP_Text UpgradeItemDisplay;
+        public TMP_Text DescriptionItemDisplay;
         public Image UpgradeImageDisplay;
         public Button UpgradeButton;
     }
