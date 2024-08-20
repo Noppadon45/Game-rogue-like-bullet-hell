@@ -8,4 +8,5 @@ public class WeaponEvolution : ScriptableObject
     public PassiveitemScriptableScript CatalystPassiveItemData;
     public WeaponScriptableObject EvolutionWeaponData;
     public GameObject EvoWeapon;
+
 }
