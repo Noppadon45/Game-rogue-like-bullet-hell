@@ -1992,6 +1992,8 @@ MonoBehaviour:
     DescriptionItemDisplay: {fileID: 58133169}
     UpgradeImageDisplay: {fileID: 1088248025}
     UpgradeButton: {fileID: 772749399}
+  weaponEvolutions:
+  - {fileID: 11400000, guid: d320287d9db5c7f428b81d2648af0df1, type: 2}
 --- !u!1 &318919545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,7 +4966,7 @@ MonoBehaviour:
   - {fileID: 785296942}
   - {fileID: 1096865006}
   - {fileID: 1520391876}
-  TimeLimit: 61
+  TimeLimit: 300
   StopWatchDisplay: {fileID: 102682011}
   IsGameOver: 0
   IsLevelUP: 0
@@ -10397,6 +10399,63 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &3847992503114132074
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557030389827279024, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669082333099749967, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
+      propertyPath: m_Name
+      value: TreasureChest_0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 92583c54618ced1428e86af22355f1f7, type: 3}
 --- !u!1001 &7209725925242200475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10529,3 +10588,4 @@ SceneRoots:
   - {fileID: 1390339430}
   - {fileID: 451223984}
   - {fileID: 930496180}
+  - {fileID: 3847992503114132074}

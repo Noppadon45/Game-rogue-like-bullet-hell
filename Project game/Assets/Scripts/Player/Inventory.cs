@@ -41,6 +41,7 @@ public class Inventory : MonoBehaviour
     public List<PassiveUpgrade> PassiveUpgradesOptions = new List<PassiveUpgrade>();    //List PassiveUpgrade Option for Passive
     public List<UpgradeUI> UpgradeUIOptions = new List<UpgradeUI>();    //List UpgradeUI Option in scene
 
+    public List<WeaponEvolution> weaponEvolutions = new List<WeaponEvolution>();
     PlayerStats Player;
 
     void Start()
@@ -60,6 +61,7 @@ public class Inventory : MonoBehaviour
         {
             GameManager.instance.LevelUPEnd();
         }
+        
     }
     public void AddPassive (int Index , Passiveitem Passive )   //Add Passive to Inventory
     {
@@ -76,6 +78,8 @@ public class Inventory : MonoBehaviour
 
     public void LevelUpWeapon (int Index , int WeaponUpgradeIndex)
     {
+        
+
         if (WeaponSlots.Count > Index)
         {
             WeaponsController Weapon = WeaponSlots[Index];
@@ -85,6 +89,7 @@ public class Inventory : MonoBehaviour
                 return;
 
             }
+
             GameObject UpgradeWeapon = Instantiate(Weapon.WeaponData.NextLevelPrefab, transform.position, Quaternion.identity);
             UpgradeWeapon.transform.SetParent(transform);       //Set Weapon to child of Player
             AddWeapon(Index, UpgradeWeapon.GetComponent<WeaponsController>());
@@ -92,6 +97,8 @@ public class Inventory : MonoBehaviour
             WeaponLevels[Index] = UpgradeWeapon.GetComponent<WeaponsController>().WeaponData.Level;     //Check correct Levelup Weapon
 
             WeaponUpgradesOptions[WeaponUpgradeIndex].WeaponData = UpgradeWeapon.GetComponent<WeaponsController>().WeaponData;
+
+            
 
             if (GameManager.instance != null && GameManager.instance.IsLevelUP)
             {
@@ -271,4 +278,81 @@ public class Inventory : MonoBehaviour
     {
         UI.UpgradeItemDisplay.transform.parent.gameObject.SetActive(true);
     }
+
+    public List<WeaponEvolution> GetPossibleEvolution()
+    {
+        List<WeaponEvolution> PossibleEvolution = new List<WeaponEvolution>();
+
+        foreach (WeaponsController weapon in WeaponSlots)
+        {
+            if (weapon != null)
+            {
+                foreach (Passiveitem Catalyst in PassiveSlots)
+                {
+                    if (Catalyst != null)
+                    {
+                        foreach (WeaponEvolution evolution in weaponEvolutions)
+                        {
+                            if (weapon.WeaponData.Level >= evolution.WeaponBaseData.Level && Catalyst.PassiveData.Level >= evolution.CatalystPassiveItemData.Level)
+                            {
+                                PossibleEvolution.Add(evolution);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return PossibleEvolution;
+    }
+
+    public void EvolveWeapon(WeaponEvolution Evolution)
+    {
+        for (int weaponSlotIndex = 0; weaponSlotIndex < WeaponSlots.Count; weaponSlotIndex++)
+        {
+            WeaponsController weapon = WeaponSlots[weaponSlotIndex];
+
+            if (!weapon)
+            {
+                continue;
+            }
+
+            for (int catalystSlotIndex = 0; catalystSlotIndex < PassiveSlots.Count; catalystSlotIndex++)
+            {
+                Passiveitem catalyst = PassiveSlots[catalystSlotIndex];
+
+                if (!catalyst)
+                {
+                    continue;
+                }
+
+                if (weapon && catalyst && weapon.WeaponData.Level >= Evolution.WeaponBaseData.Level && catalyst.PassiveData.Level >= Evolution.CatalystPassiveItemData.Level)
+                {
+                    GameObject EvolvedWeapon = Instantiate(Evolution.EvoWeapon, transform.position, Quaternion.identity);
+                    WeaponsController evolvedWeaponController = EvolvedWeapon.GetComponent<WeaponsController>();
+
+                    EvolvedWeapon.transform.SetParent(transform);   //Set Weapon to be a child of the player
+                    AddWeapon(weaponSlotIndex, evolvedWeaponController);
+                    Destroy(weapon.gameObject);
+
+                    //Update level and icon
+                    WeaponLevels[weaponSlotIndex] = evolvedWeaponController.WeaponData.Level;
+                    WeaponUi[weaponSlotIndex].sprite = evolvedWeaponController.WeaponData.icon;
+
+                    //Update the option upgrade Evolve
+                    WeaponUpgradesOptions.RemoveAt(evolvedWeaponController.WeaponData.weaponEvolveandRemove);   
+
+                    Debug.LogWarning("Evolve");
+
+                    return;
+                }
+            }
+        }
+    }
+
+    
+    
+        
+    
+
 }

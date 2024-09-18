@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1433344b4d046843a21f1010561803f, type: 3}
+  m_Name: Kunai + Might
+  m_EditorClassIdentifier: 
+  WeaponBaseData: {fileID: 11400000, guid: cfa7572b6d2a91745b636f6b03a697fa, type: 2}
+  CatalystPassiveItemData: {fileID: 11400000, guid: 0a2796dc48b44dd489b2b387bee2a44e, type: 2}
+  EvolutionWeaponData: {fileID: 11400000, guid: 2b2f86899f608dd4ba461b04400fb0e6, type: 2}
+  EvoWeapon: {fileID: 5453590110231612517, guid: b75b5e161e3ec9f4e8f82b9ab19d7aca, type: 3}
