@@ -128,6 +128,8 @@ public class PlayerStats : MonoBehaviour
 
     #endregion
 
+    public ParticleSystem EffectgotDamage;
+
 
     //Experience Level Player
     [Header("Experience/Level")]
@@ -265,6 +267,10 @@ public class PlayerStats : MonoBehaviour
         if (!Isifream)
         {
             CurrentHealth -= dmg;
+
+            //if player takeDamage play partical Effect got Damage
+            if (EffectgotDamage)
+                Instantiate(EffectgotDamage, transform.position, Quaternion.identity);
 
             IfreamTimer = IfreamDuration;
             Isifream = true;
