@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class EnemyStats : MonoBehaviour
@@ -53,12 +54,20 @@ public class EnemyStats : MonoBehaviour
         CurrentHealth -= Damage;
         StartCoroutine(DamageFlash());
 
+        if (Damage > 0)
+        {
+            GameManager.DamagePopUp(Mathf.FloorToInt(Damage).ToString(), transform);
+        }
+        
+        //Knockback if > 0
         if (knockbackforce > 0)
         {
+            //Get direction of knockback
             Vector2 dir = (Vector2)transform.position - sourcePosition;
             movement.Knockback(dir.normalized * knockbackforce, knockbackDuration);
         }
 
+        //Kill Enemy if Health <= 0
         if (CurrentHealth <= 0)
         {
             Kill();

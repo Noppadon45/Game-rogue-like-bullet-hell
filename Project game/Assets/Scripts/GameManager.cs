@@ -51,7 +51,12 @@ public class GameManager : MonoBehaviour
     float StopWatchTime;     //Current Time in Game
     public float TimeLimit;     //Time limit in each second
     public TMPro.TMP_Text StopWatchDisplay;       //Show StopWatch Time in Game
-    
+
+    [Header("Damage Text Pop")]
+    public Canvas DamageText;
+    public float Textsize = 20;
+    public TMP_FontAsset textfont;
+    public Camera RefCamera;
 
     //Check IsGameOver or not
     public bool IsGameOver = false;
@@ -67,7 +72,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        }else
+        } else
         {
             Debug.LogWarning("Extra" + this + "Delected");
             Destroy(gameObject);
@@ -118,8 +123,61 @@ public class GameManager : MonoBehaviour
                 Debug.Log("State Error");
                 break;
         }
-        
+
     }
+    public static void DamagePopUp(string text, Transform target, float duration = 1f, float speed = 1f)
+    {
+        if (!instance.DamageText) return;
+
+        if (!instance.RefCamera) instance.RefCamera = Camera.main;
+
+        instance.StartCoroutine(instance.DamagePopUpCoroutine(
+            text, target, duration, speed
+            ));
+    }
+    IEnumerator DamagePopUpCoroutine(string text, Transform target, float duration = 1f , float speed = 50f)
+    {
+        //Generate text
+        GameObject textObject = new GameObject("DamageText");
+        RectTransform RectT = textObject.AddComponent<RectTransform>();
+        TextMeshProUGUI TextMP = textObject.AddComponent<TextMeshProUGUI>();
+        TextMP.text = text;
+        TextMP.horizontalAlignment = HorizontalAlignmentOptions.Center;
+        TextMP.verticalAlignment = VerticalAlignmentOptions.Middle;
+        TextMP.fontSize = Textsize;
+        if (textfont) TextMP.font = textfont;
+        
+        RectT.position = RefCamera.WorldToScreenPoint(target.position);
+
+        //Destroy Text when out of duration
+        Destroy(textObject, duration);
+
+        //Generate text object to canvas
+        textObject.transform.SetParent(instance.DamageText.transform);
+
+        //Function PopUp text and Fade Text when Popup overtime
+        WaitForEndOfFrame f = new WaitForEndOfFrame();
+        float t = 0;
+        float PositonY = 0;
+        while (t < duration)
+        {
+            //Wait for fream
+            yield return f;
+            t += Time.deltaTime;
+
+            //Fade Text When PopUp
+            TextMP.color = new Color(TextMP.color.r, TextMP.color.g , TextMP.color.b, 1 - t / duration);
+
+            //PopUp Text
+            PositonY += speed * Time.deltaTime;
+            if (RectT != null) RectT.position = RefCamera.WorldToScreenPoint(target.position + new Vector3(0, PositonY));
+        }
+
+
+    }
+
+   
+
 
     public void StateChange(GameState StateChange)
     {
