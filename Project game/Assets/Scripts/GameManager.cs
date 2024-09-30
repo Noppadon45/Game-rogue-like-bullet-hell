@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
 
     public GameState stateBefore;       //Store the stateBefore
 
+    [Header("Damage Text Pop")]
+    public Canvas DamageText;
+    public float Textsize = 20;
+    public TMP_FontAsset textfont;
+    public Camera RefCamera;
+
     [Header("Scenes")]
     public GameObject PauseScene;
     public GameObject ResultScene;
@@ -52,11 +58,7 @@ public class GameManager : MonoBehaviour
     public float TimeLimit;     //Time limit in each second
     public TMPro.TMP_Text StopWatchDisplay;       //Show StopWatch Time in Game
 
-    [Header("Damage Text Pop")]
-    public Canvas DamageText;
-    public float Textsize = 20;
-    public TMP_FontAsset textfont;
-    public Camera RefCamera;
+   
 
     //Check IsGameOver or not
     public bool IsGameOver = false;
@@ -125,20 +127,13 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public static void DamagePopUp(string text, Transform target, float duration = 1f, float speed = 1f)
-    {
-        if (!instance.DamageText) return;
-
-        if (!instance.RefCamera) instance.RefCamera = Camera.main;
-
-        instance.StartCoroutine(instance.DamagePopUpCoroutine(
-            text, target, duration, speed
-            ));
-    }
+    
     IEnumerator DamagePopUpCoroutine(string text, Transform target, float duration = 1f , float speed = 50f)
     {
         //Generate text
+
         GameObject textObject = new GameObject("DamageText");
+
         RectTransform RectT = textObject.AddComponent<RectTransform>();
         TextMeshProUGUI TextMP = textObject.AddComponent<TextMeshProUGUI>();
         TextMP.text = text;
@@ -154,6 +149,8 @@ public class GameManager : MonoBehaviour
 
         //Generate text object to canvas
         textObject.transform.SetParent(instance.DamageText.transform);
+        textObject.transform.SetAsFirstSibling();
+        
 
         //Function PopUp text and Fade Text when Popup overtime
         WaitForEndOfFrame f = new WaitForEndOfFrame();
@@ -170,13 +167,29 @@ public class GameManager : MonoBehaviour
 
             //PopUp Text
             PositonY += speed * Time.deltaTime;
-            if (RectT != null) RectT.position = RefCamera.WorldToScreenPoint(target.position + new Vector3(0, PositonY));
+            if (RectT.position != null)
+            {
+                RectT.position = RefCamera.WorldToScreenPoint(target.position + new Vector3(0, PositonY));
+                
+            }
+            
         }
-
+     
 
     }
 
-   
+    public static void DamagePopUp(string text, Transform target, float duration = 1f, float speed = 1f)
+    {
+        if (!instance.DamageText) return;
+
+        if (!instance.RefCamera) instance.RefCamera = Camera.main;
+
+
+        instance.StartCoroutine(instance.DamagePopUpCoroutine(
+            text, target, duration, speed
+            ));
+    }
+
 
 
     public void StateChange(GameState StateChange)

@@ -102,7 +102,7 @@ public class EnemyStats : MonoBehaviour
 
 
     // Reference from PlayerStats takeDamage()
-    private void OnCollisionStay2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -111,7 +111,7 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         EnemySpawner EnemySpawner = FindObjectOfType<EnemySpawner>();
         EnemySpawner.Enemygetkill();
