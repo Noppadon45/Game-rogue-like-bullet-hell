@@ -1,4 +1,5 @@
-    using System.Collections;
+using System.Buffers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,6 +60,107 @@ public abstract class Weapon : MonoBehaviour
         {
             return damage + Random.Range(0 , damageVariance);
         }
+    }
+
+    public int currentLevel = 1;
+    public int maxLevel = 1;
+
+    protected PlayerStats playerStats;
+
+    protected Stats currentStats;
+
+    public WeaponData data;     //Get Weapon Data from ScriptableObject Script
+
+    protected float currentCooldown;
+
+    protected PlayerMovement playermovement;        //Ref Current player movement
+
+
+    //Every Start Game Initialise Current Weapon
+    public virtual void Initialise(WeaponData data)
+    {
+        maxLevel = data.maxLevel;
+        playerStats = FindObjectOfType<PlayerStats>();
+
+        this.data = data;
+        currentStats = data.baseStats;
+        playermovement = FindObjectOfType<PlayerMovement>();
+        currentCooldown = currentStats.cooldown;
+    }
+
+    //Assign the CurrentStats from WeaponData Script
+    protected virtual void Awake()
+    {
+        if (data)
+        {
+            currentStats = data.baseStats;
+        }
+    }
+
+    
+    protected virtual void Start()
+    {
+        //If have WeaponData Script Initialise it
+        if (data)
+        {
+            Initialise(data);
+        }
+    }
+
+    protected virtual void Update()
+    {
+        //Attack when current cooldown is < 0f
+        currentCooldown += Time.deltaTime;
+        if (currentCooldown <= 0f)
+        {
+            Attack(currentStats.number);
+        }
+    }
+
+    public virtual bool CanLevelUp()
+    {
+        return currentLevel <= maxLevel;
+    }
+
+    
+    public virtual bool LevelUp()
+    {
+        if (!CanLevelUp())
+        {
+            Debug.Log("Cant Level Up becase currentLevel already max");
+            return false;
+        }
+        //If Can Level Up Add that Stats to the Weapon Script
+        currentStats += data.GetLevelData(currentLevel++);
+        return true;
+    }
+
+    public virtual bool CanAttack()
+    {
+        return currentCooldown <= 0f;
+    }
+
+    //Check if current weapon can attack and add Weapon cooldown Stats to the current cooldown for Perform it
+    protected virtual bool Attack(int AttackNumber = 1)
+    {
+        if (CanAttack())
+        {
+            currentCooldown += currentStats.cooldown;
+            return true;
+        }
+        return false;
+    }
+
+
+    //Get Damage weapon stats and calulate with currentmight of playerStats Script
+    public virtual float GetDamage()
+    {
+        return currentStats.GetDamage() * playerStats.CurrentMight;
+    }
+
+    public virtual Stats GetStats()
+    {
+        return currentStats;
     }
 
 }
