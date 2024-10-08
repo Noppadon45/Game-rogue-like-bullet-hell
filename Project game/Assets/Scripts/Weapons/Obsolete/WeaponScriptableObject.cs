@@ -4,6 +4,7 @@ using System.IO.Enumeration;
 using UnityEditor.Search;
 using UnityEngine;
 
+[System.Obsolete("It will be replace in WeaponData Script")]
 [CreateAssetMenu(fileName = "WeaponScriptableObject", menuName = "ScriptableObjects/Weapon")]
 public class WeaponScriptableObject : ScriptableObject
 {
