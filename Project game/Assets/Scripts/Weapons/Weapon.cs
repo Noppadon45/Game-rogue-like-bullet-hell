@@ -14,7 +14,7 @@ public abstract class Weapon : MonoBehaviour
         public string description;
 
         [Header("Visual Weapon")]
-        //public Projectile projectilePrefab; //When attach projectile prefab Projectile prefab will spawn every time cooldown reach
+        public Projectile projectilePrefab; //When attach projectile prefab Projectile prefab will spawn every time cooldown reach
         //public Aura auraPrefab;  //Aura prefab Aura prefab will spawn weapon had equip
         public ParticleSystem hitEffect;
         public Rect spawnVarient;

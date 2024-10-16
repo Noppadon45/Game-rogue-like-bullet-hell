@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b92cf9b50e2ad4a8e0a3d55901cbce, type: 3}
-  m_Name: Weapon Data
+  m_Name: Kunai Data
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   maxLevel: 0

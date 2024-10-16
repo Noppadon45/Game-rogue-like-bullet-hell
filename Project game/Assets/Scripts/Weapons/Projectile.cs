@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class WeaponProjectile : WeaponEffect
+public class Projectile : WeaponEffect
 {
     public enum DamageSource { projectile, owner };
     public DamageSource damageSource = DamageSource.projectile;     //Control how knockback is calcurate for the enemy when the projectile hit
@@ -16,6 +16,7 @@ public class WeaponProjectile : WeaponEffect
 
     protected virtual void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         Weapon.Stats stats = weapon.GetStats();
 
