@@ -7,8 +7,8 @@ using UnityEngine;
 public class WeaponProjectile : WeaponEffect
 {
     public enum DamageSource { projectile, owner };
-    public DamageSource damageSource = DamageSource.projectile;
-    public bool isAutoAim = false;
+    public DamageSource damageSource = DamageSource.projectile;     //Control how knockback is calcurate for the enemy when the projectile hit
+    public bool isAutoAim = false;                              //Can select Auto aim to enemy or disable
     public Vector3 rotationSpeed = new Vector3(0, 0, 0);
 
     protected Rigidbody2D rb;
