@@ -28,4 +28,17 @@ public class WeaponDataEditor : Editor
 
         selectWeaponSubType = Math.Max(0 , Array.IndexOf(weaponSubType, weaponData.behaviour));
     }
+
+    public override void OnInspectorGUI()
+    {
+        selectWeaponSubType = EditorGUILayout.Popup("Behaviour", Math.Max(0, selectWeaponSubType) , weaponSubType);
+
+        if (selectWeaponSubType > 0)
+        {
+            weaponData.behaviour = weaponSubType[selectWeaponSubType].ToString();
+            EditorUtility.SetDirty(weaponData);
+            DrawDefaultInspector();
+        }
+        
+    }
 }
