@@ -5,13 +5,11 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon Data", menuName = "WeaponData")]
 
-public class WeaponData : ScriptableObject
+public class WeaponData : ItemData
 {
-    public Sprite icon;
-    public int maxLevel;
 
-    [HideInInspector]
-    public string behaviour;
+    [HideInInspector] public string behaviour;
+    
     public Weapon.Stats baseStats;
     public Weapon.Stats[] linearGrown;
     public Weapon.Stats[] randomGrown;

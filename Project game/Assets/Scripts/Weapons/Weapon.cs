@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : Item
 {
     // Start is called before the first frame update
     [System.Serializable]
@@ -62,10 +62,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public int currentLevel = 1;
-    public int maxLevel = 1;
 
-    protected PlayerStats playerStats;
 
     protected Stats currentStats;
 
@@ -79,9 +76,7 @@ public abstract class Weapon : MonoBehaviour
     //Every Start Game Initialise Current Weapon
     public virtual void Initialise(WeaponData data)
     {
-        maxLevel = data.maxLevel;
-        playerStats = FindObjectOfType<PlayerStats>();
-
+        base.Initialise(data);
         this.data = data;
         currentStats = data.baseStats;
         playermovement = FindObjectOfType<PlayerMovement>();
@@ -117,14 +112,11 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public virtual bool CanLevelUp()
-    {
-        return currentLevel <= maxLevel;
-    }
-
     
-    public virtual bool LevelUp()
+    
+    public override bool DoLevelUp()
     {
+        base.DoLevelUp();
         if (!CanLevelUp())
         {
             Debug.Log("Cant Level Up becase currentLevel already max");
