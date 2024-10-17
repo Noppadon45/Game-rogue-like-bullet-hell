@@ -17,13 +17,15 @@ public class ProjectileWeapon : Weapon
         if (currentAttackInterval > 0)
         {
             currentAttackInterval -= Time.deltaTime;
+
+            //if currentAttackInterval <= 0 weapon will spawn from number of currentAttackCount
             if (currentAttackInterval <= 0 )
             {
                 Attack(currentAttackCount);
             }
         }
     }
-
+    //if currentcooldown <= 0f
     public override bool CanAttack()
     {
         if (currentAttackCount > 0) 
