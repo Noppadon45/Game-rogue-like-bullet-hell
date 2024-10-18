@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[System.Obsolete("This will replace by CharacterData Script")]
 [CreateAssetMenu (fileName = ("CharacterSciptableObject"), menuName =("ScriptableObjects/Character"))]
 public class CharacterSciptableObject : ScriptableObject
 {

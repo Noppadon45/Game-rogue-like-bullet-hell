@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterSelect : MonoBehaviour
 {
     public static CharacterSelect instance;
-    public CharacterSciptableObject characterData;
+    public CharacterData characterData;
 
     private void Awake()
     {
@@ -19,11 +20,24 @@ public class CharacterSelect : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public static CharacterSciptableObject GetData()
+    public static CharacterData GetData()
     {
-        return instance.characterData;
+        if (instance && instance.characterData)
+        {
+            return instance.characterData;
+        }
+        else
+        {
+            CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
+            if (characters.Length > 0)
+            {
+                return characters[Random.Range(0, characters.Length)];
+            }
+        }
+        return null;
+        
     }
-    public void SelectCharecter(CharacterSciptableObject charecter)
+    public void SelectCharecter(CharacterData charecter)
     {
         characterData = charecter;
     }
