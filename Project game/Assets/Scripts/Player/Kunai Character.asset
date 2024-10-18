@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kunai Character
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  name: 
+  name: Kunai Character
   startingweapon: {fileID: 0}
   stats:
     maxHealth: 1000
