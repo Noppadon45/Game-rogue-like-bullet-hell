@@ -205,6 +205,11 @@ public class PlayerStats : MonoBehaviour
 
         UpdateHealthBar();
     }
+
+    public void CalculateStats()
+    {
+
+    }
     public void IncreaseExperience(int amount)
     {
         experience += amount;
