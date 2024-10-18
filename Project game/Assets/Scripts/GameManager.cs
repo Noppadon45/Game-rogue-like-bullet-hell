@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
         ResultScene.SetActive(true);
     }
 
-    public void AssignChooseCharacter(CharacterSciptableObject CharacterData) 
+    public void AssignChooseCharacter(CharacterData CharacterData) 
     {
         CharacterImage.sprite = CharacterData.Icon;
         CharacterName.text = CharacterData.Name;
