@@ -5,7 +5,7 @@ using UnityEngine;
 //A class take PassiveData and it use in a player stats when receive
 public class Passive : Item
 {
-    public PassiveData passiveData;
+    public PassiveData data;
     [SerializeField] CharacterData.Stats currentBoosts;
 
     [System.Serializable]
@@ -20,7 +20,7 @@ public class Passive : Item
     public virtual void Initialise(PassiveData Data)
     {
         base.Initialise(Data);
-        this.passiveData = Data;
+        this.data = Data;
         currentBoosts = Data.baseStats.boosts;
 
     }
@@ -43,7 +43,7 @@ public class Passive : Item
         }
         
         //add stats of the next level to the weapon
-        currentBoosts += passiveData.GetLevelData(currentLevel++).boosts;
+        currentBoosts += data.GetLevelData(currentLevel++).boosts;
         return true;
         
     }
