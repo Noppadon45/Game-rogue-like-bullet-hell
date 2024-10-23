@@ -10,10 +10,10 @@ using UnityEditor.Build.Player;
 
 public class PlayerStats : MonoBehaviour
 {
-    CharacterData characterData;
-    public CharacterData.Stats baseStats;
+    CharacterData characterData;        
+    public CharacterData.Stats baseStats;       //Its use in CalculateStats() because It will calculate with base of baseStats of playerdata
     [SerializeField]
-    CharacterData.Stats actualstats;
+    CharacterData.Stats actualstats;        //This stats is actual stats use in game
 
     float currentHealth;
 
@@ -21,17 +21,19 @@ public class PlayerStats : MonoBehaviour
     public float CurrentHealth
     {
         get { return currentHealth; }
+
+        //If player pause sceen , player health will also update
         set
         {
-            //When value has changed
+            //Check if the value has changed
             if (currentHealth != value)
             {
-                currentHealth = value;      //Update the value real time
+                currentHealth = value;      
                 if (GameManager.instance != null)
                 {
                     GameManager.instance.CurrentHealthDisplay.text = string.Format("Health : {0} / {1}" , currentHealth, actualstats.maxHealth);
                 }
-                //Add addition
+
             }
         }
     }
@@ -40,17 +42,20 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth
     {
         get { return actualstats.maxHealth; }
+
+        //If player pause sceen , player health will also update
         set
         {
-            //When value has changed
+            //Check if the value has changed
             if (actualstats.maxHealth != value)
             {
-                actualstats.maxHealth = value;      //Update the value real time
+                actualstats.maxHealth = value;      
                 if (GameManager.instance != null)
                 {
                     GameManager.instance.CurrentHealthDisplay.text = string.Format("Health : {0} / {1}", currentHealth, actualstats.maxHealth);
                 }
-                //Add addition
+                //Update the real time value of the stats
+
             }
         }
     }
@@ -67,6 +72,7 @@ public class PlayerStats : MonoBehaviour
         get { return actualstats.recovery; }
         set
         {
+            //Check if the value has changed
             if (actualstats.recovery != value)
             {
                 actualstats.recovery = value;
@@ -89,6 +95,7 @@ public class PlayerStats : MonoBehaviour
         get { return actualstats.moveSpeed; }
         set
         {
+            //Check if the value has changed
             if (actualstats.moveSpeed != value)
             {
                 actualstats.moveSpeed = value;
@@ -112,6 +119,7 @@ public class PlayerStats : MonoBehaviour
         get { return actualstats.might; }
         set
         {
+            //Check if the value has changed
             if (actualstats.might != value)
             {
                 actualstats.might = value;
@@ -134,6 +142,7 @@ public class PlayerStats : MonoBehaviour
         get { return actualstats.speed; }
         set
         {
+            //Check if the value has changed
             if (actualstats.speed != value)
             {
                 actualstats.speed = value;
@@ -158,6 +167,7 @@ public class PlayerStats : MonoBehaviour
         {
             if (actualstats.magnet != value)
             {
+                //Check if the value has changed
                 actualstats.magnet = value;
                 if (GameManager.instance != null)
                 {
@@ -300,6 +310,7 @@ public class PlayerStats : MonoBehaviour
 
         playerInventory = GetComponent<PlayerInventory>();
         
+        //Assign the variable
         baseStats = actualstats = characterData.stats;
         currentHealth = actualstats.maxHealth;
         
