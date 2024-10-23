@@ -50,8 +50,8 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public List<Slot> WeaponSlot = new List<Slot>(5);
-    public List<Slot> PassiveSlot = new List<Slot>(5);
+    public List<Slot> WeaponSlot = new List<Slot>(6);
+    public List<Slot> PassiveSlot = new List<Slot>(6);
 
     [System.Serializable]
     public class UpgradeUI
@@ -153,12 +153,12 @@ public class PlayerInventory : MonoBehaviour
         {
             availablePassive.Remove(data);
         }
-        for (int i = 0; i < PassiveSlot.Count; i++)
+        for (int i = 0; i < WeaponSlot.Count; i++)
         {
-            Passive p = PassiveSlot[i].item as Passive;
+            Passive p = WeaponSlot[i].item as Passive;
             if (p.data == data) 
             {
-                PassiveSlot[i].Clear();
+                WeaponSlot[i].Clear();
                 p.OnEquip();
                 Destroy(p.gameObject);
                 return true;
@@ -226,7 +226,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 GameManager.instance.LevelUPEnd();
             }
-            playerStats.CalculateStats();
+            
 
             return slotNum;
         }
@@ -415,7 +415,7 @@ public class PlayerInventory : MonoBehaviour
                     {
                         upgradeOption.upgradeButton.onClick.AddListener(() => Add(chooseWeaponUpgrade));        //Apply button function
                         upgradeOption.upgradeDescription.text = chooseWeaponUpgrade.baseStats.description;      //Apply initial weapon description
-                        upgradeOption.upgradeName.text = chooseWeaponUpgrade.name;                              //Apply initial weapon name
+                        upgradeOption.upgradeName.text = chooseWeaponUpgrade.baseStats.name;                    //Apply initial weapon name
                         upgradeOption.upgradeIcon.sprite = chooseWeaponUpgrade.icon;                            //Aooly initial weapon icon
                     }
                 }

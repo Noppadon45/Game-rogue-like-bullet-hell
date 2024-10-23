@@ -741,8 +741,8 @@ MonoBehaviour:
         m_MethodName: SelectCharecter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: d507790f534e072478562430cae0d382, type: 2}
-          m_ObjectArgumentAssemblyTypeName: CharacterSciptableObject, Assembly-CSharp
+          m_ObjectArgument: {fileID: 11400000, guid: 46fbe584f1fd15d4a903649148036ee8, type: 2}
+          m_ObjectArgumentAssemblyTypeName: CharacterData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864f414a2909648429ce9e050e51967f, type: 3}
+  m_Name: Might Data
+  m_EditorClassIdentifier: 
+  icon: {fileID: -1856977840, guid: c0d0f3a001899f94cbf2674a3b990e70, type: 3}
+  maxLevel: 5
+  baseStats:
+    name: Might
+    description: Give Attack percent 10 %
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      might: 0.1
+      speed: 0
+      magnet: 0
+  growth:
+  - name: Might Lv 2
+    description: Give Attack percent 10 %
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      might: 0.1
+      speed: 0
+      magnet: 0
+  - name: Might Lv 3
+    description: Give Attack percent 10 %
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      might: 0.1
+      speed: 0
+      magnet: 0
+  - name: Might Lv 4
+    description: Give Attack percent 10 %
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      might: 0.1
+      speed: 0
+      magnet: 0
+  - name: Might Lv 5
+    description: Give Attack percent 10 %
+    boosts:
+      maxHealth: 0
+      recovery: 0
+      moveSpeed: 0
+      might: 0.1
+      speed: 0
+      magnet: 0

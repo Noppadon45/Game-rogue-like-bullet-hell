@@ -8,7 +8,8 @@ using UnityEngine;
 public class WeaponData : ItemData
 {
 
-    [HideInInspector] public string behaviour;
+    [HideInInspector]
+    public string behaviour;
     
     public Weapon.Stats baseStats;
     public Weapon.Stats[] linearGrown;
