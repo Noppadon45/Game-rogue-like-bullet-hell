@@ -348,6 +348,7 @@ public class PlayerStats : MonoBehaviour
 
     void UpdateHealthBar()
     {
+        //Upgrade the health bar
         HealthBar.fillAmount = currentHealth / actualstats.maxHealth;
     }
 
@@ -393,6 +394,7 @@ public class PlayerStats : MonoBehaviour
         {
             CurrentHealth += CurrentRecovery * Time.deltaTime;
 
+            //If currenthealth > actual maxhealth use actual maxhealth stats
             if (CurrentHealth > actualstats.maxHealth)
             {
                 CurrentHealth = actualstats.maxHealth;
