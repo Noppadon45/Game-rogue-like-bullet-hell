@@ -15,7 +15,7 @@ public abstract class Weapon : Item
 
         [Header("Visual Weapon")]
         public Projectile projectilePrefab; //When attach projectile prefab Projectile prefab will spawn every time cooldown reach
-        //public Aura auraPrefab;  //Aura prefab Aura prefab will spawn weapon had equip
+        public Aura auraPrefab;  //Aura prefab Aura prefab will spawn weapon had equip
         public ParticleSystem hitEffect;
         public Rect spawnVarient;
 
