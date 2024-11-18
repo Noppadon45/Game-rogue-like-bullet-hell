@@ -1404,6 +1404,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186197773}
   m_CullTransparentMesh: 1
+--- !u!1001 &230955125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.546591
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.1643085
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.19085146
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257235943398720034, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684674705011084319, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+      propertyPath: m_Name
+      value: Kunai Projectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
 --- !u!1 &232163312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1745,6 @@ GameObject:
   - component: {fileID: 314135442}
   - component: {fileID: 314135441}
   - component: {fileID: 314135443}
-  - component: {fileID: 314135444}
   - component: {fileID: 314135445}
   m_Layer: 0
   m_Name: Player
@@ -1935,81 +1991,6 @@ MonoBehaviour:
   secondweapon: {fileID: 3530633890242960026, guid: 831908bb84979e0469c4db35756c4b52, type: 3}
   firstpassive: {fileID: 2015644174274145517, guid: a7feacc388c77bd46a2c0fff74a1d86c, type: 3}
   secondpasssive: {fileID: 4726960239690150356, guid: 56f02c31664f7674ab2c2c3b12d723d4, type: 3}
---- !u!114 &314135444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314135435}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7063925548804648897e5903d085868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  WeaponLevels: 000000000000000000000000000000000000000000000000
-  WeaponUi:
-  - {fileID: 2067964992}
-  - {fileID: 1479540263}
-  - {fileID: 1066897555}
-  - {fileID: 1588626702}
-  - {fileID: 871499667}
-  - {fileID: 49067634}
-  PassiveSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  PassiveLevels: 000000000000000000000000000000000000000000000000
-  PassiveUi:
-  - {fileID: 1464254485}
-  - {fileID: 1115024202}
-  - {fileID: 1700437684}
-  - {fileID: 1331905418}
-  - {fileID: 1091212674}
-  - {fileID: 134607266}
-  WeaponUpgradesOptions:
-  - WeaponUpgradeIndex: 0
-    InitWeapon: {fileID: 5453590110231612517, guid: f46185d215682c649b55a82201e9c1a2, type: 3}
-    WeaponData: {fileID: 11400000, guid: 985b8111667f3614a9ed0a3946406f44, type: 2}
-  - WeaponUpgradeIndex: 1
-    InitWeapon: {fileID: 3530633890242960026, guid: 831908bb84979e0469c4db35756c4b52, type: 3}
-    WeaponData: {fileID: 11400000, guid: b85d17ff4cfac8b419ea131388d961fb, type: 2}
-  PassiveUpgradesOptions:
-  - PassiveUpgradeIndex: 0
-    InitPassive: {fileID: 2015644174274145517, guid: a7feacc388c77bd46a2c0fff74a1d86c, type: 3}
-    PassiveData: {fileID: 11400000, guid: 0a2796dc48b44dd489b2b387bee2a44e, type: 2}
-  - PassiveUpgradeIndex: 1
-    InitPassive: {fileID: 4726960239690150356, guid: 56f02c31664f7674ab2c2c3b12d723d4, type: 3}
-    PassiveData: {fileID: 11400000, guid: b2aefdb1d4fa0444e832e797720f02c4, type: 2}
-  UpgradeUIOptions:
-  - UpgradeItemDisplay: {fileID: 909896056}
-    DescriptionItemDisplay: {fileID: 925101430}
-    UpgradeImageDisplay: {fileID: 162381869}
-    UpgradeButton: {fileID: 2003019266}
-  - UpgradeItemDisplay: {fileID: 1929518924}
-    DescriptionItemDisplay: {fileID: 341205952}
-    UpgradeImageDisplay: {fileID: 568644416}
-    UpgradeButton: {fileID: 750200094}
-  - UpgradeItemDisplay: {fileID: 2061553844}
-    DescriptionItemDisplay: {fileID: 605637670}
-    UpgradeImageDisplay: {fileID: 502237013}
-    UpgradeButton: {fileID: 186197775}
-  - UpgradeItemDisplay: {fileID: 116486487}
-    DescriptionItemDisplay: {fileID: 58133169}
-    UpgradeImageDisplay: {fileID: 1088248025}
-    UpgradeButton: {fileID: 772749399}
-  weaponEvolutions:
-  - {fileID: 11400000, guid: d320287d9db5c7f428b81d2648af0df1, type: 2}
 --- !u!114 &314135445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,7 +2035,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f502ec4ad246ee04fac61f1f2bc790e8, type: 2}
   - {fileID: 11400000, guid: 2068888d41937384bafd9b7376e1a772, type: 2}
   - {fileID: 11400000, guid: 0dbc24c67f4a7d44bbfd5950a1897746, type: 2}
-  upgradeUIOption: []
+  upgradeUIOption:
+  - upgradeName: {fileID: 909896056}
+    upgradeDescription: {fileID: 925101430}
+    upgradeIcon: {fileID: 162381869}
+    upgradeButton: {fileID: 2003019266}
+  - upgradeName: {fileID: 1929518924}
+    upgradeDescription: {fileID: 341205952}
+    upgradeIcon: {fileID: 568644416}
+    upgradeButton: {fileID: 750200094}
+  - upgradeName: {fileID: 2061553844}
+    upgradeDescription: {fileID: 605637670}
+    upgradeIcon: {fileID: 502237013}
+    upgradeButton: {fileID: 186197775}
+  - upgradeName: {fileID: 116486487}
+    upgradeDescription: {fileID: 58133169}
+    upgradeIcon: {fileID: 1088248025}
+    upgradeButton: {fileID: 772749399}
 --- !u!1 &318919545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,7 +3766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750200094
@@ -10723,3 +10720,4 @@ SceneRoots:
   - {fileID: 451223984}
   - {fileID: 930496180}
   - {fileID: 3847992503114132074}
+  - {fileID: 230955125}

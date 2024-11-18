@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     [Header("StopWatch")]
     float StopWatchTime;     //Current Time in Game
     public float TimeLimit;     //Time limit in each second
-    public TMPro.TMP_Text StopWatchDisplay;       //Show StopWatch Time in Game
+    public TMP_Text StopWatchDisplay;       //Show StopWatch Time in Game
 
    
 
@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        } else
+        } 
+        else
         {
             Debug.LogWarning("Extra" + this + "Delected");
             Destroy(gameObject);
@@ -315,7 +316,7 @@ public class GameManager : MonoBehaviour
 
         StopWatchTimeDisplay();
 
-        if (StopWatchTime > TimeLimit) 
+        if (StopWatchTime >= TimeLimit) 
         {
             PlayerObject.SendMessage("Kill");
 
@@ -335,13 +336,13 @@ public class GameManager : MonoBehaviour
     public void LevelUPStart()
     {
         StateChange(GameState.LevelUP);     //Change State
-        PlayerObject.SendMessage("RemoveandApplyUpgrade");
+        PlayerObject.SendMessage("RemoveAndApplyUpgrade");
     }
 
     public void LevelUPEnd()
     {
         IsLevelUP = false;      
-        Time.timeScale = 1;     //Resume Time in Game
+        Time.timeScale = 1f;     //Resume Time in Game
         LevelUPScene.SetActive(false);
         StateChange(GameState.GamePlay);
     }

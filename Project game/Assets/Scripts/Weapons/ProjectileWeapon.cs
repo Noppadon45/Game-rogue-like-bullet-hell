@@ -9,7 +9,7 @@ public class ProjectileWeapon : Weapon
     protected float currentAttackInterval;      //Attack time Interval
     protected int currentAttackCount;           //Attack Count of weapon
 
-    protected override void Update()
+    protected override void Update()    
     {
         base.Update();
 
@@ -28,10 +28,7 @@ public class ProjectileWeapon : Weapon
     //if currentcooldown <= 0f
     public override bool CanAttack()
     {
-        if (currentAttackCount > 0) 
-        {
-            return true;
-        }
+        if (currentAttackCount > 0) return true;
         return base.CanAttack();
     }
 
@@ -53,7 +50,10 @@ public class ProjectileWeapon : Weapon
         float spawnAngle = GetSpawnAngle();
 
         //Spawn a copy of the projectile
-        Projectile prefab = Instantiate(currentStats.projectilePrefab, playerStats.transform.position + (Vector3)GetSpawnOffset(spawnAngle) , Quaternion.Euler(0 , 0 , spawnAngle));
+        Projectile prefab = Instantiate(
+            currentStats.projectilePrefab,
+            playerStats.transform.position + (Vector3)GetSpawnOffset(spawnAngle),
+            Quaternion.Euler(0, 0, spawnAngle)) ;
 
 
         prefab.weapon = this;
@@ -79,7 +79,7 @@ public class ProjectileWeapon : Weapon
     //Get which direction of the player and spawning projectile should face
     protected virtual float GetSpawnAngle()
     {
-        return Mathf.Atan2(playermovement.moveDirection.y , playermovement.moveDirection.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(playermovement.LastMovementVector.y , playermovement.LastMovementVector.x) * Mathf.Rad2Deg;
     }
 
     //Generate a random point to spawn the projectile on and Rotate the facing of the point by SpawnAngle
@@ -88,6 +88,6 @@ public class ProjectileWeapon : Weapon
         return Quaternion.Euler(0 , 0 , spawnAngle) * new Vector2(
             Random.Range(currentStats.spawnVarient.xMin , currentStats.spawnVarient.xMax),
             Random.Range(currentStats.spawnVarient.yMin, currentStats.spawnVarient.yMax)
-            );
+        );
     }
 }

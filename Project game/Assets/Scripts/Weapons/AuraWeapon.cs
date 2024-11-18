@@ -13,6 +13,7 @@ public class AuraWeapon : Weapon
 
     public override void OnEquip()
     {
+        OnEquip();
         if (currentStats.auraPrefab)
         {
             if (currentAura)
@@ -27,6 +28,7 @@ public class AuraWeapon : Weapon
 
     public override void OnUnEquip()
     {
+        OnUnEquip();
         if (currentAura)
         {
             Destroy(currentAura);

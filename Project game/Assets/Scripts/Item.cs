@@ -87,6 +87,22 @@ public abstract class Item : MonoBehaviour
         return true;
     }
 
+    public virtual bool AttemptEvolution(int levelUpAmount = 1)
+    {
+        if (evolutionData == null)
+        {
+            return false;
+        }
+        foreach (ItemData.Evolution e in evolutionData)
+        {
+            if (e.condition == ItemData.Evolution.Condition.auto)
+            {
+                return AttemptEvolution(e);
+            }
+        }
+        return false;
+    }
+
     public virtual bool CanLevelUp()
     {
         return currentLevel <= maxLevel;
@@ -94,23 +110,13 @@ public abstract class Item : MonoBehaviour
 
     public virtual bool DoLevelUp()
     {
-        if (evolutionData == null)
-        {
-            return true;
-        }
-        foreach (ItemData.Evolution e in evolutionData)
-        {
-            if (e.condition == ItemData.Evolution.Condition.auto)
-            {
-                AttemptEvolution(e);
-            }
-        }
+        AttemptEvolution();
         return true;
     }
 
     public virtual void OnEquip()
     {
-
+        AttemptEvolution();
     }
 
     public virtual void OnUnEquip()
@@ -118,8 +124,4 @@ public abstract class Item : MonoBehaviour
 
     }
 
-    internal void Initialise(WeaponData data)
-    {
-        throw new NotImplementedException();
-    }
 }

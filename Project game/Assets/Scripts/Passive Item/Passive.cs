@@ -43,7 +43,7 @@ public class Passive : Item
         }
         
         //add stats of the next level to the weapon
-        currentBoosts += data.GetLevelData(currentLevel++).boosts;
+        currentBoosts += data.GetLevelData(++currentLevel).boosts;
         return true;
         
     }

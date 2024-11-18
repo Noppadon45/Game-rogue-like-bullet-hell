@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEngine;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
+[CustomEditor(typeof(WeaponData))]
 public class WeaponDataEditor : Editor
 {
     WeaponData weaponData;
@@ -22,7 +20,7 @@ public class WeaponDataEditor : Editor
         List<System.Type> subTypes = System.AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(s => s.GetTypes())
             .Where(p => baseType.IsAssignableFrom(p) && p != baseType)
-            .ToList() ;
+            .ToList();
 
         //Add a None option in front
         List<string> subTypeString = subTypes.Select(t => t.Name).ToList();

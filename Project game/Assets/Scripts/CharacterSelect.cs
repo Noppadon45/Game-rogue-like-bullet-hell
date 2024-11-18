@@ -14,7 +14,8 @@ public class CharacterSelect : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }else
+        }
+        else
         {
             Debug.Log("Character" + this + "Deleted");
             Destroy(gameObject);
@@ -23,9 +24,7 @@ public class CharacterSelect : MonoBehaviour
     public static CharacterData GetData()
     {
         if (instance && instance.characterData)
-        {
             return instance.characterData;
-        }
         else
         {
             CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
@@ -37,9 +36,9 @@ public class CharacterSelect : MonoBehaviour
         return null;
         
     }
-    public void SelectCharecter(CharacterData charecter)
+    public void SelectCharecter(CharacterData character)
     {
-        characterData = charecter;
+        characterData = character;
     }
 
     public void DestroySingleton()

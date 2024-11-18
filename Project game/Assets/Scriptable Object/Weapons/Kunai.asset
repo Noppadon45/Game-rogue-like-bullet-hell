@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: cd491354e7344f44a937c08c0ca5410d, type: 3}
   maxLevel: 8
-  behaviour: 
+  evolutionData: []
+  behaviour: ProjectileWeapon
   baseStats:
     name: Kunai
     description: Shoot kuani in the direction of player facing
     projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+    auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -32,7 +34,7 @@ MonoBehaviour:
     area: 1
     speed: 5
     cooldown: 1
-    projectileInterval: 0.1
+    projectileInterval: 5
     knockback: 0.5
     number: 1
     piercing: 1
@@ -40,7 +42,8 @@ MonoBehaviour:
   linearGrown:
   - name: Kunai Level 2
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -61,7 +64,8 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 3
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -82,7 +86,8 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 4
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -103,7 +108,8 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 5
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2

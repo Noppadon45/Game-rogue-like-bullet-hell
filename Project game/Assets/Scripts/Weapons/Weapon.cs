@@ -1,11 +1,8 @@
-using System.Buffers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : Item
 {
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     [System.Serializable]
     public struct Stats
     {
@@ -38,9 +35,9 @@ public abstract class Weapon : Item
             Stats result = new Stats();
             result.name = s2.name ?? s1.name;
             result.description = s2.description ?? s1.description;
-            //result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
-            //result.auraPrefab = s2.auraPrefab ?? s1.auraPrefab;
-            result.hitEffect = s2.hitEffect == null ? s1.hitEffect : s2.hitEffect ; ;
+            result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
+            result.auraPrefab = s2.auraPrefab ?? s1.auraPrefab;
+            result.hitEffect = s2.hitEffect == null ? s1.hitEffect : s2.hitEffect;
             result.spawnVarient = s2.spawnVarient;
             result.lifetime = s1.lifetime + s2.lifetime;
             result.damage = s1.damage + s2.damage;
@@ -79,7 +76,7 @@ public abstract class Weapon : Item
         base.Initialise(data);
         this.data = data;
         currentStats = data.baseStats;
-        playermovement = FindObjectOfType<PlayerMovement>();
+        playermovement = GetComponentInParent<PlayerMovement>();
         currentCooldown = currentStats.cooldown;
     }
 
@@ -105,7 +102,7 @@ public abstract class Weapon : Item
     protected virtual void Update()
     {
         //Attack when current cooldown is < 0f
-        currentCooldown += Time.deltaTime;
+        currentCooldown -= Time.deltaTime;
         if (currentCooldown <= 0f)
         {
             Attack(currentStats.number);
@@ -119,17 +116,17 @@ public abstract class Weapon : Item
         base.DoLevelUp();
         if (!CanLevelUp())
         {
-            Debug.Log("Cant Level Up becase currentLevel already max");
+            Debug.Log(string.Format("Cant level up {0} to levelup {1} , max level of {2} already reached.", name, currentLevel, data.maxLevel));
             return false;
         }
         //If Can Level Up Add that Stats to the Weapon Script
-        currentStats += data.GetLevelData(currentLevel++);
+        currentStats += data.GetLevelData(++currentLevel);
         return true;
     }
 
     public virtual bool CanAttack()
     {
-        return currentCooldown <= 0f;
+        return currentCooldown <= 0;
     }
 
     //Check if current weapon can attack and add Weapon cooldown Stats to the current cooldown for Perform it

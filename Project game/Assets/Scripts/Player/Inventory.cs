@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Obsolete]
 public class Inventory : MonoBehaviour
 {
     public List<WeaponsController> WeaponSlots = new List<WeaponsController>(6);
@@ -226,7 +227,7 @@ public class Inventory : MonoBehaviour
                                     DisableUpgradeUI(UpgradeOption);
                                     break;
                                 }
-                                UpgradeOption.UpgradeButton.onClick.AddListener(() => LevelUpPassive(i , choosePassiveUpgrade.PassiveUpgradeIndex));       //Button function when choose Passive and have Passive then UpgradePassive
+                                   //Button function when choose Passive and have Passive then UpgradePassive
 
                                 //Set the Desciption and name to the next level
                                 UpgradeOption.DescriptionItemDisplay.text = choosePassiveUpgrade.PassiveData.NextLevelPrefab.GetComponent<Passiveitem>().PassiveData.NameDescription;
@@ -241,7 +242,7 @@ public class Inventory : MonoBehaviour
                     }
                     if (NewPassive)
                     {
-                        UpgradeOption.UpgradeButton.onClick.AddListener(() => Player.SpawnPassiveItem(choosePassiveUpgrade.InitPassive));       //Button function when choose Passive and dont have Passive then Spawn new Passive
+                             //Button function when choose Passive and dont have Passive then Spawn new Passive
 
                         //Apply the init Description and name
                         UpgradeOption.DescriptionItemDisplay.text = choosePassiveUpgrade.PassiveData.NameDescription;

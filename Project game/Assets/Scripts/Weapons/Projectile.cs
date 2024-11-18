@@ -13,7 +13,7 @@ public class Projectile : WeaponEffect
 
     protected Rigidbody2D rb;
     protected int piercing;
-
+ 
     protected virtual void Start()
     {
 
@@ -50,7 +50,7 @@ public class Projectile : WeaponEffect
 
 
     public virtual void AutoAim()
-    {
+    { 
         float aimAngle;
         EnemyStats[] targets = FindObjectsOfType<EnemyStats>();
 
@@ -87,14 +87,8 @@ public class Projectile : WeaponEffect
 
         if (enemyStats)
         {
-            Vector3 source;
-            if (damageSource == DamageSource.owner && player)
-            {
-                source = player.transform.position;
-            }else
-            {
-                source = transform.position;
-            }
+            Vector3 source = damageSource == DamageSource.owner && player ? player.transform.position : transform.position;
+            
             enemyStats.TakeDamage(GetDamage(), source);
 
             Weapon.Stats stats = weapon.GetStats();
@@ -109,7 +103,7 @@ public class Projectile : WeaponEffect
             breakbleProp.TakeDamage(GetDamage());
             piercing--;
 
-            Weapon.Stats stats = weapon.GetStats() ;
+            Weapon.Stats stats = weapon.GetStats();
             if (stats.hitEffect)
             {
                 Destroy(Instantiate(stats.hitEffect, transform.position, Quaternion.identity), 5f);

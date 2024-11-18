@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8c566383620ca04cb05b863df60d405, type: 3}
-  m_Name: Kunai Character
+  m_Name: Aura Character
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
-  name: Kunai Character
-  startingweapon: {fileID: 11400000, guid: 60dfb80a56b0dd8459b49f91a7f9184b, type: 2}
+  name: Aura Character
+  startingweapon: {fileID: 11400000, guid: 9d8825acaa03cfc4da890217ea4f18d3, type: 2}
   stats:
     maxHealth: 1000
     recovery: 0

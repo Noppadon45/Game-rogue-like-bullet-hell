@@ -1,11 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using UnityEditor.Build.Player;
 
 
 public class PlayerStats : MonoBehaviour
@@ -165,9 +162,9 @@ public class PlayerStats : MonoBehaviour
         get { return actualstats.magnet; }
         set
         {
+            //Check if the value has changed
             if (actualstats.magnet != value)
             {
-                //Check if the value has changed
                 actualstats.magnet = value;
                 if (GameManager.instance != null)
                 {
@@ -215,9 +212,20 @@ public class PlayerStats : MonoBehaviour
     public Image ExperienceBar;
     public TMP_Text LevelDisplay;
 
-    public GameObject secondweapon;
-    public GameObject firstpassive, secondpasssive;
+    void Awake()
+    {
 
+        characterData = CharacterSelect.GetData();
+        CharacterSelect.instance.DestroySingleton();
+
+        playerInventory = GetComponent<PlayerInventory>();
+
+        //Assign the variable
+        baseStats = actualstats = characterData.stats;
+        currentHealth = actualstats.maxHealth;
+
+
+    }
 
     void Start()
     {
@@ -229,7 +237,7 @@ public class PlayerStats : MonoBehaviour
         experienceCap = levelRanges[0].experienceCapIncrease;
 
         //Set Current Stats Display
-        GameManager.instance.CurrentHealthDisplay.text = "currentHealth " + currentHealth;
+        GameManager.instance.CurrentHealthDisplay.text = "currentHealth " + CurrentHealth;
         GameManager.instance.CurrentRecoveryDisplay.text = "currentRecovery " + CurrentRecovery;
         GameManager.instance.CurrentMoveSpeedDisplay.text = "currentMoveSpeed " + CurrentMoveSpeed;
         GameManager.instance.CurrentMightDisplay.text = "currentMight " + CurrentMagnet;
@@ -247,7 +255,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (IfreamTimer > 0) 
         {
-            IfreamTimer = IfreamTimer - Time.deltaTime;
+            IfreamTimer -= Time.deltaTime;
         }
         //If IfreamTimer < 0 Ifream false
         else if (Isifream)
@@ -284,7 +292,7 @@ public class PlayerStats : MonoBehaviour
         if (experience >= experienceCap) 
         {
             level++;
-            experience = experience - experienceCap;
+            experience -= experienceCap;
             int experienceCapIncrease = 0; 
             foreach (LevelRange range in levelRanges)
             {
@@ -302,55 +310,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-
-        characterData = CharacterSelect.GetData();
-        CharacterSelect.instance.DestroySingleton();
-
-        playerInventory = GetComponent<PlayerInventory>();
-        
-        //Assign the variable
-        baseStats = actualstats = characterData.stats;
-        currentHealth = actualstats.maxHealth;
-        
-        
-    }
     
-
-    public void takeDamage(float dmg)
-    {
-        if (!Isifream)
-        {
-            CurrentHealth -= dmg;
-
-            //if player takeDamage play partical Effect got Damage
-            if (EffectgotDamage)
-            {
-                Destroy(Instantiate(EffectgotDamage, transform.position, Quaternion.identity), 5f);
-            }
-                
-
-            IfreamTimer = IfreamDuration;
-            Isifream = true;
-            if (CurrentHealth <= 0)
-            {
-                Kill();
-            }
-
-            UpdateHealthBar();
-        }
-        else
-        {
-
-        }
-    }
-
-    void UpdateHealthBar()
-    {
-        //Upgrade the health bar
-        HealthBar.fillAmount = currentHealth / actualstats.maxHealth;
-    }
 
     void UpdateExperienceBar()
     {
@@ -362,6 +322,35 @@ public class PlayerStats : MonoBehaviour
         LevelDisplay.text = "Lv " + level.ToString();       //Update Lv in top right in game
     }
 
+    public void takeDamage(float dmg)
+    {
+        if (!Isifream)
+        {
+            CurrentHealth -= dmg;
+
+            //if player takeDamage play partical Effect got Damage
+            if (EffectgotDamage) Destroy(Instantiate(EffectgotDamage, transform.position, Quaternion.identity), 5f);
+            
+
+            IfreamTimer = IfreamDuration;
+            Isifream = true;
+
+            if (CurrentHealth <= 0)
+            {
+                Kill();
+            }
+
+            UpdateHealthBar();
+        }
+        
+    }
+
+    void UpdateHealthBar()
+    {
+        //Upgrade the health bar
+        HealthBar.fillAmount = currentHealth / actualstats.maxHealth;
+    }
+
     public void Kill()
     {
         //GameOver Scene
@@ -371,7 +360,7 @@ public class PlayerStats : MonoBehaviour
    
             GameManager.instance.GameOver();
         }
-        Debug.Log("Player is Dead");
+        
     }
 
     public void Heal(float amount)
@@ -393,6 +382,7 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth < actualstats.maxHealth)
         {
             CurrentHealth += CurrentRecovery * Time.deltaTime;
+            currentHealth += Recovery * Time.deltaTime;
 
             //If currenthealth > actual maxhealth use actual maxhealth stats
             if (CurrentHealth > actualstats.maxHealth)

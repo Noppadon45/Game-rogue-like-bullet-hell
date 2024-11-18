@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -26,7 +24,7 @@ public class WeaponData : ItemData
         //Pick RandomGrown Level
         if (randomGrown.Length > 0)
         {
-            return randomGrown[Random.Range(0, linearGrown.Length)];
+            return randomGrown[Random.Range(0, randomGrown.Length)];
         }
 
         Debug.LogWarning(string.Format("Weapon dont have level up stats config for level" , level));
