@@ -1988,9 +1988,6 @@ MonoBehaviour:
   HealthBar: {fileID: 76399245}
   ExperienceBar: {fileID: 1591072504}
   LevelDisplay: {fileID: 1348152543}
-  secondweapon: {fileID: 3530633890242960026, guid: 831908bb84979e0469c4db35756c4b52, type: 3}
-  firstpassive: {fileID: 2015644174274145517, guid: a7feacc388c77bd46a2c0fff74a1d86c, type: 3}
-  secondpasssive: {fileID: 4726960239690150356, guid: 56f02c31664f7674ab2c2c3b12d723d4, type: 3}
 --- !u!114 &314135445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,6 +2028,7 @@ MonoBehaviour:
     image: {fileID: 134607266}
   availableWeapon:
   - {fileID: 11400000, guid: 60dfb80a56b0dd8459b49f91a7f9184b, type: 2}
+  - {fileID: 11400000, guid: 9d8825acaa03cfc4da890217ea4f18d3, type: 2}
   availablePassive:
   - {fileID: 11400000, guid: f502ec4ad246ee04fac61f1f2bc790e8, type: 2}
   - {fileID: 11400000, guid: 2068888d41937384bafd9b7376e1a772, type: 2}

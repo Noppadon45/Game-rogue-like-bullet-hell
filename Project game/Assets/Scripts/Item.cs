@@ -78,7 +78,8 @@ public abstract class Item : MonoBehaviour
         if (this is Passive && consumePassives)
         {
             inventory.Remove((this as Passive).data , true);
-        }else if (this is Weapon && consumeWeapons)
+        }
+        else if (this is Weapon && consumeWeapons)
         {
             inventory.Remove((this as  Weapon).data , true);
         }

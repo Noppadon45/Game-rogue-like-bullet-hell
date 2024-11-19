@@ -20,7 +20,7 @@ MonoBehaviour:
     name: Aura
     description: Deal damage around player
     projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 5785933639882927525, guid: be5cb5cb033f9514db9538075f8e8833, type: 3}
+    auraPrefab: {fileID: 6021521604957619953, guid: 6d3770138ad7ae24db1065ab8d8afce6, type: 3}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -29,7 +29,7 @@ MonoBehaviour:
       width: 0
       height: 0
     lifetime: 0
-    damage: 2
+    damage: 10
     damageVariance: 1
     area: 1
     speed: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   - name: Aura Lv 2
     description: Deal more damage around player
     projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
+    auraPrefab: {fileID: 6021521604957619953, guid: 6d3770138ad7ae24db1065ab8d8afce6, type: 3}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -65,7 +65,7 @@ MonoBehaviour:
   - name: Aura Lv 3
     description: Deal more damage around player
     projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
+    auraPrefab: {fileID: 6021521604957619953, guid: 6d3770138ad7ae24db1065ab8d8afce6, type: 3}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -74,20 +74,20 @@ MonoBehaviour:
       width: 0
       height: 0
     lifetime: 0
-    damage: 0
-    damageVariance: 0
+    damage: 2
+    damageVariance: 1
     area: 0
     speed: 0
-    cooldown: 0
+    cooldown: 1.3
     projectileInterval: 0
-    knockback: 0
-    number: 0
+    knockback: 1
+    number: 1
     piercing: 0
-    maxInstance: 0
+    maxInstance: 50
   - name: Aura Lv 4
     description: Deal more damage around player
     projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
+    auraPrefab: {fileID: 6021521604957619953, guid: 6d3770138ad7ae24db1065ab8d8afce6, type: 3}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -96,20 +96,20 @@ MonoBehaviour:
       width: 0
       height: 0
     lifetime: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
+    damage: 2
+    damageVariance: 1
+    area: 0.01
     speed: 0
-    cooldown: 0
+    cooldown: 1.3
     projectileInterval: 0
-    knockback: 0
-    number: 0
+    knockback: 1
+    number: 1
     piercing: 0
-    maxInstance: 0
+    maxInstance: 50
   - name: Aura Lv 5
-    description: 
+    description: Deal more damage around player
     projectilePrefab: {fileID: 0}
-    auraPrefab: {fileID: 0}
+    auraPrefab: {fileID: 6021521604957619953, guid: 6d3770138ad7ae24db1065ab8d8afce6, type: 3}
     hitEffect: {fileID: 0}
     spawnVarient:
       serializedVersion: 2
@@ -118,14 +118,14 @@ MonoBehaviour:
       width: 0
       height: 0
     lifetime: 0
-    damage: 0
-    damageVariance: 0
-    area: 0
+    damage: 2
+    damageVariance: 1
+    area: 0.01
     speed: 0
-    cooldown: 0
+    cooldown: 1.3
     projectileInterval: 0
-    knockback: 0
-    number: 0
+    knockback: 1
+    number: 1
     piercing: 0
-    maxInstance: 0
+    maxInstance: 50
   randomGrown: []

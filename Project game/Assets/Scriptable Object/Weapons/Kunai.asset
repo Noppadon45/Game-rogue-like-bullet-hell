@@ -42,7 +42,7 @@ MonoBehaviour:
   linearGrown:
   - name: Kunai Level 2
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: 0}
+    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
@@ -54,7 +54,7 @@ MonoBehaviour:
     lifetime: 3
     damage: 7
     damageVariance: 2
-    area: 1
+    area: 0
     speed: 5
     cooldown: 1
     projectileInterval: 0.1
@@ -64,7 +64,7 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 3
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: 0}
+    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
@@ -76,7 +76,7 @@ MonoBehaviour:
     lifetime: 3
     damage: 9
     damageVariance: 2
-    area: 1
+    area: 0
     speed: 5
     cooldown: 1
     projectileInterval: 0.1
@@ -86,7 +86,7 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 4
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: 0}
+    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
@@ -98,7 +98,7 @@ MonoBehaviour:
     lifetime: 3
     damage: 11
     damageVariance: 2
-    area: 1
+    area: 0
     speed: 5
     cooldown: 1
     projectileInterval: 0.1
@@ -108,7 +108,7 @@ MonoBehaviour:
     maxInstance: 70
   - name: Kunai Level 5
     description: Damage +2 , Piercing + 1
-    projectilePrefab: {fileID: 0}
+    projectilePrefab: {fileID: -6955171632540548733, guid: 34666bdc0b46c894699a3ef464e9037f, type: 3}
     auraPrefab: {fileID: 0}
     hitEffect: {fileID: 0}
     spawnVarient:
@@ -120,7 +120,7 @@ MonoBehaviour:
     lifetime: 3
     damage: 13
     damageVariance: 2
-    area: 1
+    area: 0.1
     speed: 5
     cooldown: 1
     projectileInterval: 0.1
