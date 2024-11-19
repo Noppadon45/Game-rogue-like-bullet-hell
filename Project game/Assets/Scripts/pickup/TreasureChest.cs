@@ -7,7 +7,7 @@ public class TreasureChest : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerInventory p = collision.GetComponent<PlayerInventory>();
-        if (collision)
+        if (p)
         {
             bool randombool = Random.Range(0, 2) == 0;
 
