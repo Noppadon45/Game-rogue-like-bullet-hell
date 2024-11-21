@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour
         LevelDisplay.text = LevelData.ToString();
     }
 
-    public void AssignWeaponandPassiveImage(List <Image> WeaponImagesData , List<Image> PassiveImagesData)
+    public void AssignWeaponandPassiveImage(List <PlayerInventory.Slot> WeaponImagesData , List<PlayerInventory.Slot> PassiveImagesData)
     {
         if (WeaponImagesData.Count != WeaponImage.Count || PassiveImagesData.Count != PassiveImage.Count) 
         {
@@ -290,11 +290,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < WeaponImage.Count; i++) 
         {
             //Check Weapon Sprite that is not null
-            if (WeaponImagesData[i].sprite)
+            if (WeaponImagesData[i].image.sprite)
             {
                 //Enable list that Weapon Image and put WeaponData sprite to Weapon Image 
                 WeaponImage[i].enabled = true;
-                WeaponImage[i].sprite = WeaponImagesData[i].sprite;
+                WeaponImage[i].sprite = WeaponImagesData[i].image.sprite;
             }
             else
             {
@@ -307,11 +307,11 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < PassiveImage.Count; i++)
         {
             //Check Passive Sprite that is not null
-            if (PassiveImagesData[i].sprite)
+            if (PassiveImagesData[i].image.sprite)
             {
                 //Enable list that Passive Image and put PassiveData sprite to Passive Image 
                 PassiveImage[i].enabled = true;
-                PassiveImage[i].sprite = PassiveImagesData[i].sprite;
+                PassiveImage[i].sprite = PassiveImagesData[i].image.sprite;
             }
             else
             {

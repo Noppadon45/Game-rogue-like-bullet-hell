@@ -357,7 +357,7 @@ public class PlayerStats : MonoBehaviour
         if (!GameManager.instance.IsGameOver) 
         {
             GameManager.instance.AssignLevelPlayer(level);
-   
+            GameManager.instance.AssignWeaponandPassiveImage(playerInventory.WeaponSlot, playerInventory.PassiveSlot);
             GameManager.instance.GameOver();
         }
         
