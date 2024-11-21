@@ -157,25 +157,36 @@ public class GameManager : MonoBehaviour
         WaitForEndOfFrame f = new WaitForEndOfFrame();
         float t = 0;
         float PositonY = 0;
+        Vector3 lastPositionEnemy = target.position;
         while (t < duration)
         {
-            //Wait for fream
-            yield return f;
-            t += Time.deltaTime;
+            
+            if (!RectT)
+            {
+                break;
+            }
 
             //Fade Text When PopUp
             TextMP.color = new Color(TextMP.color.r, TextMP.color.g , TextMP.color.b, 1 - t / duration);
 
+            if (target)
+            {
+                lastPositionEnemy = target.position;
+            }
             //PopUp Text
             PositonY += speed * Time.deltaTime;
             if (RectT.position != null)
             {
-                RectT.position = RefCamera.WorldToScreenPoint(target.position + new Vector3(0, PositonY));
+                RectT.position = RefCamera.WorldToScreenPoint(lastPositionEnemy + new Vector3(0, PositonY));
                 
             }
-            
+
+            //Wait for fream
+            yield return f;
+            t += Time.deltaTime;
+
         }
-     
+
 
     }
 
