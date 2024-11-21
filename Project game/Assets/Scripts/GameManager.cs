@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
 
         //Generate text object to canvas
         textObject.transform.SetParent(instance.DamageText.transform);
-        textObject.transform.SetAsFirstSibling();
+        textObject.transform.SetSiblingIndex(0);
         
 
         //Function PopUp text and Fade Text when Popup overtime
