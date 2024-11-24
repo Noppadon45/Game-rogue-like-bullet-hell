@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEditor;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -27,11 +28,28 @@ public class CharacterSelect : MonoBehaviour
             return instance.characterData;
         else
         {
-            CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
-            if (characters.Length > 0)
+            #if UNITY_EDITOR
+            string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
+            List<CharacterData> characterDatas = new List<CharacterData>();
+            foreach (string assetPath in allAssetPaths)
             {
-                return characters[Random.Range(0, characters.Length)];
+                if (assetPath.EndsWith(".asset"))
+                {
+                    CharacterData characterData = AssetDatabase.LoadAssetAtPath<CharacterData>(assetPath);
+                    if (characterData != null)
+                    {
+                        characterDatas.Add(characterData);
+                    }
+                }
             }
+
+            if (characterDatas.Count > 0)
+            {
+                return characterDatas[Random.Range(0, characterDatas.Count)];
+            }
+            #endif
+            CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
+            
         }
         return null;
         

@@ -216,7 +216,11 @@ public class PlayerStats : MonoBehaviour
     {
 
         characterData = CharacterSelect.GetData();
-        CharacterSelect.instance.DestroySingleton();
+        if (CharacterSelect.instance)
+        {
+            CharacterSelect.instance.DestroySingleton();
+        }
+        
 
         playerInventory = GetComponent<PlayerInventory>();
 
