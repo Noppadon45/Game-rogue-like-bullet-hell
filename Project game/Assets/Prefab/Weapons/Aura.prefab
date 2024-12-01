@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6021521604957619953}
   - component: {fileID: -4038388843866627110}
   m_Layer: 0
-  m_Name: SpriteSheetOrange_0
+  m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
