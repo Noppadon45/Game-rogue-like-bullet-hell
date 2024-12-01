@@ -60,6 +60,11 @@ public class SlashWeapon : ProjectileWeapon
             currentAttackInterval = currentStats.projectileInterval;
         }
 
+        if (AttackCount > 0)
+        {
+            currentAttackCount = AttackCount;
+            currentAttackInterval = currentStats.projectileInterval;
+        }
 
         return true;
 

@@ -1972,6 +1972,7 @@ MonoBehaviour:
   availableWeapon:
   - {fileID: 11400000, guid: 60dfb80a56b0dd8459b49f91a7f9184b, type: 2}
   - {fileID: 11400000, guid: 9d8825acaa03cfc4da890217ea4f18d3, type: 2}
+  - {fileID: 11400000, guid: 86bf6f45569f10443aff95af82796400, type: 2}
   availablePassive:
   - {fileID: 11400000, guid: f502ec4ad246ee04fac61f1f2bc790e8, type: 2}
   - {fileID: 11400000, guid: 2068888d41937384bafd9b7376e1a772, type: 2}

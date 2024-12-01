@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b92cf9b50e2ad4a8e0a3d55901cbce, type: 3}
+  m_Name: Slash
+  m_EditorClassIdentifier: 
+  icon: {fileID: 527216543, guid: 49224a48db7839f41814619e5c0d6d85, type: 3}
+  maxLevel: 8
+  evolutionData: []
+  behaviour: SlashWeapon
+  baseStats:
+    name: Slash
+    description: Attack horizontal nearby player
+    projectilePrefab: {fileID: 6158248218205192006, guid: 1af7c11916b3f974ea43dd488d696383, type: 3}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVarient:
+      serializedVersion: 2
+      x: 2.5
+      y: 0
+      width: 0
+      height: 0
+    lifetime: 0.2
+    damage: 15
+    damageVariance: 2
+    area: 1
+    speed: 0
+    cooldown: 1.5
+    projectileInterval: 0.1
+    knockback: 1
+    number: 1
+    piercing: 99
+    maxInstance: 99
+  linearGrown:
+  - name: Slash Level 2
+    description: Deal more damage
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVarient:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifetime: 0.2
+    damage: 20
+    damageVariance: 2
+    area: 1
+    speed: 0
+    cooldown: 1.5
+    projectileInterval: 0.1
+    knockback: 1
+    number: 1
+    piercing: 99
+    maxInstance: 99
+  - name: Slash Level 3
+    description: Deal more damage
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVarient:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifetime: 0.2
+    damage: 25
+    damageVariance: 2
+    area: 1
+    speed: 0
+    cooldown: 1.5
+    projectileInterval: 0.1
+    knockback: 1
+    number: 1
+    piercing: 99
+    maxInstance: 99
+  - name: Slash Level 4
+    description: Deal more damage
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVarient:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifetime: 0.2
+    damage: 30
+    damageVariance: 2
+    area: 1
+    speed: 0
+    cooldown: 1.5
+    projectileInterval: 0.1
+    knockback: 1
+    number: 1
+    piercing: 99
+    maxInstance: 99
+  - name: Slash Level 5
+    description: Deal more damage
+    projectilePrefab: {fileID: 0}
+    auraPrefab: {fileID: 0}
+    hitEffect: {fileID: 0}
+    spawnVarient:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    lifetime: 0.2
+    damage: 35
+    damageVariance: 2
+    area: 1
+    speed: 0
+    cooldown: 1.5
+    projectileInterval: 0.1
+    knockback: 1
+    number: 1
+    piercing: 99
+    maxInstance: 99
+  randomGrown: []
