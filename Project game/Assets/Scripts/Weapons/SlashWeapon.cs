@@ -32,7 +32,7 @@ public class SlashWeapon : ProjectileWeapon
 
         //Calulate the angle and offset of our spawned projectile
         //If currentspawncount is even , flip the direction of the weapon
-        float spawnDirection = Mathf.Sign(playermovement.LastMovementVector.x) * (currentSpawnCount % 2 != 0 ? -1 : 1);
+        float spawnDirection = Mathf.Sign(playermovement.LastMovementVector.x) * (currentSpawnCount % 2 != 0 ? -1 : 1);     //If -1 will spawn left of player and if 1 will spawn right of player
         Vector2 spawnOffset = new Vector2(spawnDirection * Random.Range(currentStats.spawnVarient.xMin, currentStats.spawnVarient.xMax), currentSpawnOffset);
 
         //spawn a copy of the weapon
