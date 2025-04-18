@@ -37,7 +37,7 @@ MonoBehaviour:
     projectileInterval: 5
     knockback: 0.5
     number: 1
-    piercing: 1
+    piercing: 5
     maxInstance: 70
   linearGrown:
   - name: Kunai Level 2
@@ -60,7 +60,7 @@ MonoBehaviour:
     projectileInterval: 0.1
     knockback: 0.5
     number: 1
-    piercing: 2
+    piercing: 6
     maxInstance: 70
   - name: Kunai Level 3
     description: Damage +2 , Piercing + 1
@@ -82,7 +82,7 @@ MonoBehaviour:
     projectileInterval: 0.1
     knockback: 0.5
     number: 1
-    piercing: 3
+    piercing: 7
     maxInstance: 70
   - name: Kunai Level 4
     description: Damage +2 , Piercing + 1

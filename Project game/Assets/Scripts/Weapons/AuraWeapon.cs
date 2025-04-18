@@ -8,6 +8,7 @@ public class AuraWeapon : Weapon
     // Update is called once per frame
     protected override void Update() { }
 
+    // Called when the weapon is equipped
     public override void OnEquip()
     {
         // Try to replace the aura the weapon has with a new one.
@@ -17,15 +18,19 @@ public class AuraWeapon : Weapon
             currentAura = Instantiate(currentStats.auraPrefab, transform);
             currentAura.weapon = this;
             currentAura.player = playerStats;
+
+            // Scale aura based on current area stat
             currentAura.transform.localScale = new Vector3(currentStats.area, currentStats.area, currentStats.area);
         }
     }
 
+    // Remove the aura when unequipped
     public override void OnUnEquip()
     {
         if (currentAura) Destroy(currentAura);
     }
 
+    // Leveling up increases area; update aura if it's active
     public override bool DoLevelUp()
     {
         if (!base.DoLevelUp()) return false;

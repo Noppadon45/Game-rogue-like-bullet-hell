@@ -32,11 +32,13 @@ public class PlayerMovement : MonoBehaviour
         InputManagement();
         
     }
+    // Called at a fixed interval for physics-based movement
     void FixedUpdate()
     {
         move();
     }
 
+    // Handle player input and store movement directions
     void InputManagement() 
     {
         if (GameManager.instance.IsGameOver)        //When GameOver Player Cant MoveDirection
@@ -44,15 +46,18 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        // Get raw input for X and Y 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(moveX, moveY).normalized;
+        // Store last horizontal input if present
         if (moveDirection.x != 0)
         {
             lastHorizontalvector = moveDirection.x;
             LastMovementVector = new Vector2 (lastHorizontalvector, 0f);    //LastmoveX
         }
+        // Store last vertical input if present
         if (moveDirection.y != 0)
         {
             lastVerticalvector = moveDirection.y;
@@ -68,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    // Apply velocity to the Rigidbody2D to move the player
     void move()
     {
         if (GameManager.instance.IsGameOver)    //When GameOver Player Cant MoveDirection

@@ -12,22 +12,23 @@ public class Projectile : WeaponEffect
     public Vector3 rotationSpeed = new Vector3(0, 0, 0);
 
     protected Rigidbody2D rb;
-    protected int piercing;
- 
+    protected int piercing;     // Number of targets the projectile can hit before being destroyed
+
     protected virtual void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
         Weapon.Stats stats = weapon.GetStats();
 
+        // If using dynamic physics, apply speed and rotation
         if (rb.bodyType == RigidbodyType2D.Dynamic)
         {
             rb.angularVelocity = rotationSpeed.z;
             rb.velocity = transform.right * stats.speed;
         }
 
+        // Adjust projectile size based on area stat
         float area = stats.area == 0 ? 1 : stats.area;
-
         transform.localScale = new Vector3(
             area * Mathf.Sign(transform.localScale.x),
             area * Mathf.Sign(transform.localScale.y),
@@ -36,11 +37,13 @@ public class Projectile : WeaponEffect
 
         piercing = stats.piercing;
 
+        // Set projectile lifetime if specified
         if (stats.lifetime > 0)
         {
             Destroy(gameObject, stats.lifetime);
         }
 
+        // Auto-aim if enabled
         if (isAutoAim) 
         {
             AutoAim();
@@ -48,7 +51,7 @@ public class Projectile : WeaponEffect
         
     }
 
-
+    // Automatically aim toward a random enemy at spawn
     public virtual void AutoAim()
     { 
         float aimAngle;
@@ -62,13 +65,15 @@ public class Projectile : WeaponEffect
         }
         else
         {
+            // No enemies found, shoot in random direction
             aimAngle = Random.Range(0f, 360f);
         }
 
         transform.rotation = Quaternion.Euler(0, 0, aimAngle);
     }
-       
-    protected virtual void FixedUpdate()        //called method everyfream if WeaponEffect is Enable
+
+    //called method everyfream if WeaponEffect is Enable
+    protected virtual void FixedUpdate()        
     {
         if (rb.bodyType == RigidbodyType2D.Kinematic)
         {
@@ -78,8 +83,8 @@ public class Projectile : WeaponEffect
             transform.Rotate(rotationSpeed * Time.fixedDeltaTime);
         }
     }
-    
 
+    // When projectile hits something
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         EnemyStats enemyStats = other.GetComponent<EnemyStats>();
@@ -87,12 +92,16 @@ public class Projectile : WeaponEffect
 
         if (enemyStats)
         {
+            // Calculate knockback source (owner or projectile position)
             Vector3 source = damageSource == DamageSource.owner && player ? player.transform.position : transform.position;
-            
+
+            // Deal damage to enemy
             enemyStats.TakeDamage(GetDamage(), source);
 
             Weapon.Stats stats = weapon.GetStats();
             piercing--;
+
+            // Play hit effect if exists
             if (stats.hitEffect)
             {
                 Destroy(Instantiate(stats.hitEffect , transform.position , Quaternion.identity), 5f);
@@ -104,12 +113,14 @@ public class Projectile : WeaponEffect
             piercing--;
 
             Weapon.Stats stats = weapon.GetStats();
+            // Play hit effect if exists
             if (stats.hitEffect)
             {
                 Destroy(Instantiate(stats.hitEffect, transform.position, Quaternion.identity), 5f);
             }
         }
 
+        // Destroy projectile when out of pierce
         if (piercing <= 0)
         {
             Destroy(gameObject);

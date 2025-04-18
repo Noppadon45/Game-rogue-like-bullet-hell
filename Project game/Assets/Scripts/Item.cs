@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Base class for all Items (Weapons and Passives)
 public abstract class Item : MonoBehaviour
 {
     public int currentLevel = 1;
@@ -12,6 +13,7 @@ public abstract class Item : MonoBehaviour
 
     protected PlayerStats playerStats;
 
+    // Called when the item is initialized with its data
     public virtual void Initialise(ItemData data)
     {
         maxLevel = data.maxLevel;
@@ -104,22 +106,26 @@ public abstract class Item : MonoBehaviour
         return false;
     }
 
+    // Check if the item can level up (not past max level)
     public virtual bool CanLevelUp()
     {
         return currentLevel <= maxLevel;
     }
 
+    // Handles leveling up
     public virtual bool DoLevelUp()
     {
         AttemptEvolution();
         return true;
     }
 
+    // Called when item is equipped
     public virtual void OnEquip()
     {
         AttemptEvolution();
     }
 
+    // Called when item is unequipped
     public virtual void OnUnEquip()
     {
 

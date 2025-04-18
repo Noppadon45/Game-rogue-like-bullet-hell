@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: b188808bad366864c8c388afbcf83082, type: 3}
   maxLevel: 5
+  evolutionData: []
   baseStats:
-    name: Speed
+    name: Heal
     description: Generate HP player overtime
     boosts:
       maxHealth: 0

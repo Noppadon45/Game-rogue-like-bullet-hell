@@ -47,10 +47,11 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        // Initialize the PlayerStats
         Player = GetComponent<PlayerStats>();
     }
 
-
+    // Method to add a weapon to the inventory
     public void AddWeapon (int Index , WeaponsController Weapon )   //Add Weapon to Inventory
     {
         WeaponSlots[Index] = Weapon;
@@ -58,12 +59,15 @@ public class Inventory : MonoBehaviour
         WeaponUi[Index].enabled = true;                     //Enable  the image Conponent
         WeaponUi[Index].sprite = Weapon.WeaponData.icon;
 
+        // If a level-up event is happening, call LevelUpEnd method
         if (GameManager.instance != null && GameManager.instance.IsLevelUP)
         {
             GameManager.instance.LevelUPEnd();
         }
         
     }
+
+    // Method to add a passive item to the inventory
     public void AddPassive (int Index , Passiveitem Passive )   //Add Passive to Inventory
     {
         PassiveSlots[Index] = Passive;
@@ -71,16 +75,17 @@ public class Inventory : MonoBehaviour
         PassiveUi[Index].enabled = true;                     //Enable  the image Conponent
         PassiveUi[Index].sprite = Passive.PassiveData.icon;
 
+        // If a level-up event is happening, call LevelUpEnd method
         if (GameManager.instance != null && GameManager.instance.IsLevelUP)
         {
             GameManager.instance.LevelUPEnd();
         }
     }
 
+    // Method to level up a weapon in the inventory
     public void LevelUpWeapon (int Index , int WeaponUpgradeIndex)
     {
         
-
         if (WeaponSlots.Count > Index)
         {
             WeaponsController Weapon = WeaponSlots[Index];
@@ -91,12 +96,14 @@ public class Inventory : MonoBehaviour
 
             }
 
+            // Instantiate the upgraded weapon and add it to the inventory
             GameObject UpgradeWeapon = Instantiate(Weapon.WeaponData.NextLevelPrefab, transform.position, Quaternion.identity);
             UpgradeWeapon.transform.SetParent(transform);       //Set Weapon to child of Player
             AddWeapon(Index, UpgradeWeapon.GetComponent<WeaponsController>());
             Destroy(Weapon.gameObject);
             WeaponLevels[Index] = UpgradeWeapon.GetComponent<WeaponsController>().WeaponData.Level;     //Check correct Levelup Weapon
 
+            // Update the weapon upgrade options
             WeaponUpgradesOptions[WeaponUpgradeIndex].WeaponData = UpgradeWeapon.GetComponent<WeaponsController>().WeaponData;
 
             
@@ -107,6 +114,8 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    // Method to level up a passive item in the inventory
     public void LevelUpPassive (int Index , int PassiveUpgradeIndex) 
     {
         if (PassiveSlots.Count > Index)
@@ -118,14 +127,17 @@ public class Inventory : MonoBehaviour
                 return;
 
             }
+            // Instantiate the upgraded passive and add it to the inventory
             GameObject UpgradePassive = Instantiate(Passive.PassiveData.NextLevelPrefab, transform.position, Quaternion.identity);
             UpgradePassive.transform.SetParent(transform);       //Set Weapon to child of Player
             AddPassive(Index, UpgradePassive.GetComponent<Passiveitem>());
             Destroy(Passive.gameObject);
             PassiveLevels[Index] = UpgradePassive.GetComponent<Passiveitem>().PassiveData.Level;     //Check correct Levelup Passive
 
+            // Update the passive upgrade options
             PassiveUpgradesOptions[PassiveUpgradeIndex].PassiveData = UpgradePassive.GetComponent<Passiveitem>().PassiveData;
 
+            // End level-up event if necessary
             if (GameManager.instance != null && GameManager.instance.IsLevelUP)
             {
                 GameManager.instance.LevelUPEnd();
@@ -133,6 +145,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Method to apply upgrade options (either weapon or passive upgrades)
     void ApplyUpgradeOption()
     {
         List <WeaponUpgrade> UpgradeWeaponavailable = new List <WeaponUpgrade>(WeaponUpgradesOptions);
@@ -171,7 +184,7 @@ public class Inventory : MonoBehaviour
                     {
                         if (WeaponSlots[i] != null && WeaponSlots[i].WeaponData == chooseWeaponUpgrade.WeaponData)
                         {
-                            NewWeapon = false;
+                            NewWeapon = false;  // Flag to check if the weapon is new
                             if (!NewWeapon)
                             {
                                 if (!chooseWeaponUpgrade.WeaponData.NextLevelPrefab)    //When dont have next Level Weapon
@@ -214,7 +227,7 @@ public class Inventory : MonoBehaviour
                 if (choosePassiveUpgrade != null) 
                 {
                     EnableUpgradeUI(UpgradeOption);
-                    bool NewPassive = false;    //Check that is a new Passive or not
+                    bool NewPassive = false;   // Flag to check if the passive is new
                     for (int i = 0; i < PassiveSlots.Count; i++) 
                     {
                         if (PassiveSlots[i] != null && PassiveSlots[i].PassiveData == choosePassiveUpgrade.PassiveData)
@@ -256,6 +269,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Method to remove all upgrade options from the UI
     void RemoveUpgradeOption()
     {
         foreach (var UpgradeOption in UpgradeUIOptions)
@@ -265,6 +279,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Method to remove all upgrade options and then apply new upgrade options
     public void RemoveandApplyUpgrade()
     {
         RemoveUpgradeOption();
@@ -350,10 +365,5 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-    
-    
-        
-    
 
 }

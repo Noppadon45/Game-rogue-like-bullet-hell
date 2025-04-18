@@ -8,8 +8,10 @@ using UnityEngine;
 /// </summary>
 public class Aura : WeaponEffect
 {
-
+    // Dictionary to store enemies affected by the aura, along with their cooldown times
     Dictionary<EnemyStats, float> affectedTargets = new Dictionary<EnemyStats, float>();
+
+    // List of enemies that have exited the aura's range and are marked for removal
     List<EnemyStats> targetsToUnaffect = new List<EnemyStats>();
 
     // Update is called once per frame
@@ -21,7 +23,9 @@ public class Aura : WeaponEffect
         // of the aura for it. If the cooldown reaches 0, deal damage to it.
         foreach (KeyValuePair<EnemyStats, float> pair in affectedTargsCopy)
         {
+            // Decrease the cooldown time for each enemy
             affectedTargets[pair.Key] -= Time.deltaTime;
+            // If the cooldown has reached 0, apply damage to the enemy
             if (pair.Value <= 0)
             {
                 if (targetsToUnaffect.Contains(pair.Key))
@@ -40,9 +44,10 @@ public class Aura : WeaponEffect
             }
         }
     }
-
+    // Triggered when an enemy enters the aura's collider
     void OnTriggerEnter2D(Collider2D other)
     {
+        // If the collider belongs to an enemy
         if (other.TryGetComponent(out EnemyStats es))
         {
             // If the target is not yet affected by this aura, add it
@@ -55,14 +60,16 @@ public class Aura : WeaponEffect
             }
             else
             {
+                // If the enemy is marked for removal, remove it from that list
                 if (targetsToUnaffect.Contains(es))
                 {
                     targetsToUnaffect.Remove(es);
                 }
             }
         }
-    }
 
+    }
+    // Triggered when an enemy exits the aura's collider
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out EnemyStats es))

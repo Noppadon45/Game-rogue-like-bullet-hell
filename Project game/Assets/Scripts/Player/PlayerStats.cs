@@ -233,7 +233,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-
+        // Add the character's starting weapon to the player's inventory
         playerInventory.Add(characterData.StartingWeapon);
 
 
@@ -250,6 +250,7 @@ public class PlayerStats : MonoBehaviour
 
         GameManager.instance.AssignChooseCharacter(characterData);
 
+        // Update UI elements
         UpdateHealthBar();
         UpdateExperienceBar();
         UpdateLevelUP();
@@ -257,6 +258,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        // Handle invincibility (iFrames) countdown
         if (IfreamTimer > 0) 
         {
             IfreamTimer -= Time.deltaTime;
@@ -266,11 +268,15 @@ public class PlayerStats : MonoBehaviour
         {
             Isifream = false;
         }
+
+        // Heal player over time
         Recoverheal();
 
+        // Update health bar each frame
         UpdateHealthBar();
     }
 
+    // Recalculate stats including passive boosts
     public void CalculateStats()
     {
         actualstats = baseStats;
@@ -283,6 +289,8 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    // Increase experience points and check for level up
     public void IncreaseExperience(int amount)
     {
         experience += amount;
@@ -291,13 +299,16 @@ public class PlayerStats : MonoBehaviour
         UpdateExperienceBar();
     }
 
+    // Check if the player has leveled up
     void LevelupCheck()
     {
         if (experience >= experienceCap) 
         {
             level++;
             experience -= experienceCap;
-            int experienceCapIncrease = 0; 
+            int experienceCapIncrease = 0;
+
+            // Find appropriate experience cap increase based on current level
             foreach (LevelRange range in levelRanges)
             {
                 if(level >= range.startLevel && level <= range.endLevel)
@@ -306,26 +317,30 @@ public class PlayerStats : MonoBehaviour
                     break;
                 }
             }
+            // Increase experience cap and update UI
             experienceCap += experienceCapIncrease;
 
             UpdateLevelUP();
 
+            // Trigger level-up UI and logic
             GameManager.instance.LevelUPStart();
         }
     }
 
-    
 
+    //Cal Experience and fill in Experience Bar
     void UpdateExperienceBar()
     {
-        ExperienceBar.fillAmount = (float)experience / experienceCap;       //Cal Experience and fill in Experience Bar
+        ExperienceBar.fillAmount = (float)experience / experienceCap;       
     }
 
+    //Update Lv in top right in game
     void UpdateLevelUP()
     {
-        LevelDisplay.text = "Lv " + level.ToString();       //Update Lv in top right in game
+        LevelDisplay.text = "Lv " + level.ToString();       
     }
 
+    // Handle taking damage
     public void takeDamage(float dmg)
     {
         if (!Isifream)

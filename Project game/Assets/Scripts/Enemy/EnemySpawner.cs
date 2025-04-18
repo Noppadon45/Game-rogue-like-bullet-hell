@@ -43,18 +43,19 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = FindObjectOfType<PlayerStats>().transform;
-        CalWaveQuota();
+        Player = FindObjectOfType<PlayerStats>().transform; // Find the player in the scene
+        CalWaveQuota();              // Calculate how many enemies to spawn in current wave
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Check if wave has finished spawning and prepare the next one
         if (currentWave < Waves.Count && Waves[currentWave].Spawncount == 0 && !IsWaveActive)
         {
             StartCoroutine(BeginNextWave());
         }
-        //Timer
+        // Count time for next spawn
         spawnTimer += Time.deltaTime;
 
         //If Timer >= Time to SpawnWave then SpawnEnemy
@@ -79,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
+    // Calculates how many enemies to spawn in the current wave
     void CalWaveQuota()
     {
         int CurrentWaveQuota = 0;

@@ -20,15 +20,18 @@ public class Animate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the player is moving in any direction
         if (pm.moveDirection.x != 0 || pm.moveDirection.y != 0)
         {
             am.SetBool("Ismove", true);
+            //Call function SpriteDirectionChecker
             SpriteDirectionChecker();
         }else
         {
             am.SetBool("Ismove", false);
         }
     }
+    // Check which direction the sprite should be facing
     void SpriteDirectionChecker() {
         if (pm.lastHorizontalvector < 0)
         {

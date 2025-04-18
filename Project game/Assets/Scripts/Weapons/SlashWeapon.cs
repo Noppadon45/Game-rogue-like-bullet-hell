@@ -47,12 +47,12 @@ public class SlashWeapon : ProjectileWeapon
             prefab.transform.localScale = new Vector3 (-Mathf.Abs(prefab.transform.localScale.x) , prefab.transform.localScale.y , prefab.transform.localScale.z);
         }
 
-        //Assign the stats 
+        //Assign the stats and set cooldown
         prefab.weapon = this;
         currentCooldown += currentStats.cooldown;
         AttackCount--;
 
-        //Check where the next projectile should spawn
+        // If more than 1 slash, add vertical offset and delay between attacks
         currentSpawnCount++;
         if (currentSpawnCount > 1 && currentSpawnCount % 2 == 0)
         {
@@ -60,6 +60,7 @@ public class SlashWeapon : ProjectileWeapon
             currentAttackInterval = currentStats.projectileInterval;
         }
 
+        // Continue slashing if there's more attack counts left
         if (AttackCount > 0)
         {
             currentAttackCount = AttackCount;

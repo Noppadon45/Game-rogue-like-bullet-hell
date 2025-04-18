@@ -29,14 +29,15 @@ public class EnemyStats : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerStats>().transform;
+        player = FindObjectOfType<PlayerStats>().transform; // Find player in scene
         sr = GetComponent<SpriteRenderer>();
         originColor = sr.color;
 
-        movement = GetComponent<EnemyMove>();
+        movement = GetComponent<EnemyMove>();       // Reference to movement script
     }
     void Update()
     {
+        // If enemy is too far from the player, reposition closer
         if (Vector2.Distance(transform.position, player.position) >= deSpawnDistance) 
         {
             SpawnNearPlayer();
@@ -44,16 +45,19 @@ public class EnemyStats : MonoBehaviour
     }
     void Awake()
     {
+        // Initialize enemy stats from scriptable object
         CurrentMoveSpeed = EnemyData.MoveSpeed;
         CurrentHealth = EnemyData.MaxHealth;
         CurrentDamage = EnemyData.Damage;
     }
 
+    // Called when the enemy takes damage
     public void TakeDamage(float Damage , Vector2 sourcePosition , float knockbackforce = 5f , float knockbackDuration = 0.2f)
     {
         CurrentHealth -= Damage;
         StartCoroutine(DamageFlash());
 
+        // Show damage popup
         if (Damage > 0)
         {
             GameManager.DamagePopUp(Mathf.FloorToInt(Damage).ToString(), transform);
@@ -74,6 +78,7 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    //fade out and destroy enemy when dead
     IEnumerator Killfade()
     {
         WaitForEndOfFrame w = new WaitForEndOfFrame();
@@ -88,6 +93,7 @@ public class EnemyStats : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //flash red briefly when damaged
     IEnumerator DamageFlash()
     {
         sr.color = damageColor;
@@ -95,6 +101,7 @@ public class EnemyStats : MonoBehaviour
         sr.color = originColor;
     }
 
+    // Triggers the fade-out death animation
     public void Kill()
     {
         StartCoroutine(Killfade());
@@ -111,6 +118,7 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    // Notify spawner that this enemy has died
     public void OnDestroy()
     {
         EnemySpawner EnemySpawner = FindObjectOfType<EnemySpawner>();
